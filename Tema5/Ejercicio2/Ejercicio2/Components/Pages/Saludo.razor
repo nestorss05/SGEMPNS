@@ -1,0 +1,24 @@
+﻿@page "/saludo"
+@rendermode InteractiveServer
+
+<PageTitle>Saludo</PageTitle>
+
+<h1>Hello, world</h1>
+
+<p>Introduce tu nombre</p>
+
+<input id="Text1" type="text" @bind-value=nombre @bind-value:event="oninput" />
+
+<p id="saludo">@mensaje</p>
+
+<button class="btn btn-primary" @onclick="Saludar">Click me</button>
+
+@code {
+    private String nombre;
+    private String mensaje;
+
+    private void Saludar()
+    {
+        mensaje = $"Hola {nombre}";
+    }
+}
