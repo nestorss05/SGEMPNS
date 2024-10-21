@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Hola, son las @DateTime.Now.ToString("HH:mm")</h1>
+    @if (DateTime.Now.Hour > 12)
+    {
+        <p>Son mas de las doce</p>
+    } else
+    {
+        <p>Son menos de las doce</p>
+    }
+
+</div>
