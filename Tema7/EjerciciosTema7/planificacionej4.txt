@@ -1,0 +1,22 @@
+ENT
+
+ClsPersona
+- String nombre (get: set)
+- String apellido (get: set)
+- int edad (get: set)
+- int idDep (get: set)
+
+ClsDepartamento
+- Int idDep (get)
+- String nombre (get: set)
+
+CARPETA DAL -> ClsListados
+public static list<ClsPersona>ObtenerPersonas()
+public static list<ClsDepartamento>ObtenerDepartamentos()
+
+VISTAS
+ClsEditarPersonaVM:Persona
+- List<ClsDepartamento>departamentos(get)
+
+ClsEditarPersonaVM()
+- departamentos=ClsListados.ObtenerDepartamentos()

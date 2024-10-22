@@ -1,4 +1,5 @@
 ﻿using Ejercicio2.Models;
+using Ejercicio2.Models.DAL;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ejercicio2.Controllers
@@ -38,16 +39,16 @@ namespace Ejercicio2.Controllers
         /// Pagina de listado de personass
         /// </summary>
         /// <returns>Un listado de seis personas</returns>
-        public IActionResult ListadoPersonas()
+        public IActionResult ListaPersonas()
         {
-            List<clsPersona> personas = new List<clsPersona>();
-            personas.Add(new clsPersona(1, "Andrea", "Torres Rodríguez", new DateTime(1990, 03, 14), "Madrid, España", "+34 612 345 678"));
-            personas.Add(new clsPersona(2, "Santiago", "Gómez Pérez", new DateTime(1985, 11, 22), "Buenos Aires, Argentina", "+54 11 1234 5678"));
-            personas.Add(new clsPersona(3, "Valeria", "Ruiz Martínez", new DateTime(1998, 07, 05), "Bogotá, Colombia", "+57 310 765 4321"));
-            personas.Add(new clsPersona(4, "Luis Fernando", "Silva López", new DateTime(1978, 01, 30), "Ciudad de México, México", "+52 55 9876 5432"));
-            personas.Add(new clsPersona(5, "Carolina", "Jiménez Sánchez", new DateTime(1995, 09, 19), "Quito, Ecuador", "+593 2 345 6789"));
-            personas.Add(new clsPersona(6, "Daniel", "Vargas Castillo", new DateTime(1983, 12, 08), "Santiago, Chile", "+56 9 8765 4321"));
-            return View(personas);
+            try
+            {
+                List<clsPersona> personas = ClsListado.GetListado();
+                return View(personas);
+            } catch (Exception e)
+            {
+                return View();
+            }
         }
 
     }

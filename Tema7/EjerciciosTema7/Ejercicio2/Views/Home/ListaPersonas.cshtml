@@ -1,15 +1,26 @@
-﻿@*
-    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
-*@
-@{
-}
-<table>
-    <tr>
-        <td>ID</td>
-        <td>Nombre</td>
-        <td>Apellidos</td>
-        <td>Fecha de nacimiento</td>
-        <td>Localidad</td>
-        <td>Telefono</td>
-    </tr>
+﻿@model List<Ejercicio2.Models.clsPersona>
+<table border="1">
+    <thead>
+        <tr border="1px">
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Apellidos</th>
+            <th>Fecha de nacimiento</th>
+            <th>Direccion</th>
+            <th>Telefono</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (clsPersona persona in Model)
+        {
+            <tr>
+                <td>@persona.idPersona</td>
+                <td>@persona.nombre</td>
+                <td>@persona.apellidos</td>
+                <td>@persona.fechaNac</td>
+                <td>@persona.direccion</td>
+                <td>@persona.telefono</td>
+            </tr>
+        }
+    </tbody>
 </table>
