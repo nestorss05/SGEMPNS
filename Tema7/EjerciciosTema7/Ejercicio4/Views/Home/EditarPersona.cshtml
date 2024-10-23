@@ -1,0 +1,25 @@
+﻿@using Ejercicio4.Models.ENT
+@model Ejercicio4.Models.VM.ClsEditarPersonaVM
+<h1>Editar</h1>
+<form>
+    <label>Nuevo nombre: </label>
+    <input type="text" value="@Model.nombre" /> <br />
+    <label>Nuevo apellido: </label>
+    <input type="text" value="@Model.apellido" /> <br />
+    <label>Nueva edad: </label>
+    <input type="number" value="@Model.edad" /> <br />
+    <label>Departamento: </label>
+    <select name="dpto">
+        @foreach (ClsDepartamento dpto in Model.departamentos)
+        {
+            if (dpto.idDep == Model.idDep)
+            {
+                <option selected="selected" value="@dpto.idDep">@dpto.nombre</option>
+            } else
+            {
+                <option value="@dpto.idDep">@dpto.nombre</option>
+            }
+        }
+    </select> <br />
+    <input type="submit" value="Guardar">
+</form>

@@ -14,7 +14,7 @@ CARPETA DAL -> ClsListados
 public static list<ClsPersona>ObtenerPersonas()
 public static list<ClsDepartamento>ObtenerDepartamentos()
 
-VISTAS
+VM
 ClsEditarPersonaVM:Persona
 - List<ClsDepartamento>departamentos(get)
 

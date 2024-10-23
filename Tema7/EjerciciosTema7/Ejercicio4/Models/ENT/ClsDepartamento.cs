@@ -9,8 +9,8 @@
             this.nombre = nombre;
         }
 
-        int idDep { get; }
-        String nombre { get; set; }
+        public int idDep { get; }
+        public String nombre { get; set; }
 
     }
 }
