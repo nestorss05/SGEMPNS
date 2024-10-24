@@ -1,0 +1,25 @@
+﻿@model EjercicioGepeto.Models.VM.ClsEditarPersonaVM
+
+<h2>Editar Persona</h2>
+
+<form asp-action="Edit" method="post">
+    <div>
+        <label>Nombre</label>
+        <input asp-for="Persona.Nombre" />
+    </div>
+    <div>
+        <label>Apellido</label>
+        <input asp-for="Persona.Apellido" />
+    </div>
+    <div>
+        <label>Edad</label>
+        <input asp-for="Persona.Edad" type="number" />
+    </div>
+    <div>
+        <label>Departamento</label>
+        <select asp-for="Persona.IdDep" asp-items="@(new SelectList(Model.Departamentos, "IdDep", "Nombre"))">
+            <option value="">Seleccione</option>
+        </select>
+    </div>
+    <button type="submit">Guardar</button>
+</form>
