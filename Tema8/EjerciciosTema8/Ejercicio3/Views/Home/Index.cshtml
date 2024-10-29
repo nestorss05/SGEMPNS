@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1>Tema 8 - Ejercicio 3</h1>
+<h3>Realizado por Nestor Sanchez</h3>
+@model Ejercicio3DAL.ClsPersona
+@using (Html.BeginForm("Editar", "Home", FormMethod.Post))
+{
+    <label for="nombre">Nombre: </label>
+    <input type="text" id="nombre" name="nombre" value="@Model.nombre" required />
+    <br />
+
+    <label>Apellidos: </label>
+    @Html.TextBox("apellidos", Model.apellidos)
+    <br />
+
+    <label>Edad: </label>
+    @Html.TextBoxFor(model => model.edad)
+    <br />
+
+    <input type="submit" value="Saludar">
+}

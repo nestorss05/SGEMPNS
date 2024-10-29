@@ -1,8 +1,9 @@
-using Ejercicio2.Models;
+using Ejercicio3.Models;
+using Ejercicio3DAL;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
-namespace Ejercicio2.Controllers
+namespace Ejercicio3.Controllers
 {
     public class HomeController : Controller
     {
@@ -15,14 +16,14 @@ namespace Ejercicio2.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            var persona = new ClsPersona { nombre = "", apellidos = "", edad = 0 };
+            return View(persona);
         }
 
         [HttpPost]
-        public ActionResult Index(String nombre)
+        public ActionResult Editar(ClsPersona per)
         {
-            ViewBag.Saludo = nombre;
-            return View("Saludo", nombre);
+            return View("PersonaModificada", per);
         }
 
         public IActionResult Privacy()
