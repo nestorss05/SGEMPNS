@@ -4,7 +4,10 @@ namespace Ejercicio4.Models.DAL
 {
     public class ClsListados
     {
-
+        /// <summary>
+        /// Metodo para obtener las personas de una lista
+        /// </summary>
+        /// <returns></returns>
         public static List<ClsPersona> ObtenerPersonas()
         {
             List<ClsPersona> personas = new List<ClsPersona>
@@ -19,6 +22,10 @@ namespace Ejercicio4.Models.DAL
 
             return personas;
         }
+        /// <summary>
+        /// Metodo para obtener los departamentos de una lista
+        /// </summary>
+        /// <returns></returns>
         public static List<ClsDepartamento> ObtenerDepartamentos()
         {
             List<ClsDepartamento> departamentos = new List<ClsDepartamento>

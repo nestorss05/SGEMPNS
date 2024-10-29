@@ -9,6 +9,10 @@ namespace Ejercicio4.Models.VM
         public List<ClsDepartamento> departamentos{ get; }
         #endregion
 
+        /// <summary>
+        /// Edita el ViewModel de la persona
+        /// </summary>
+        /// <param name="p"></param>
         public ClsEditarPersonaVM(ClsPersona p): base(p)
         {
             this.nombre = p.nombre;

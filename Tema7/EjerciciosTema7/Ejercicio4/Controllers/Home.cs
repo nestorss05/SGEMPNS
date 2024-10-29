@@ -7,11 +7,19 @@ namespace Ejercicio4.Controllers
 {
     public class Home : Controller
     {
+        /// <summary>
+        /// Pagina principal
+        /// </summary>
+        /// <returns>Vista de la pagina principal</returns>
         public IActionResult Index()
         {
             return View();
         }
 
+        /// <summary>
+        /// Pagina para editar persona
+        /// </summary>
+        /// <returns>Vista de edicion de persona</returns>
         public IActionResult EditarPersona()
         {
             Random rnd = new Random();
