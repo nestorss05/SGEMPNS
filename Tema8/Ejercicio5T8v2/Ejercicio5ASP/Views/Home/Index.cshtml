@@ -1,0 +1,17 @@
+﻿@using Ejercicio5Ent
+@model List<Ejercicio5Ent.clsPersona>
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Listado de personas</h1>
+    <ul>
+        @foreach (clsPersona persona in Model)
+        {
+            <li>
+                @persona.id: @persona.nombre @persona.apellidos, @persona.fechaNac
+            </li>
+        }
+    </ul>
+</div>
