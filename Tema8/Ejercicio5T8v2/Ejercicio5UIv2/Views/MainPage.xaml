@@ -6,10 +6,39 @@
     <ContentPage.BindingContext>
         <viewModels:MainPageVM></viewModels:MainPageVM>
     </ContentPage.BindingContext>
-    <ScrollView>
-        <ListView ItemsSource="{Binding Lista}">
-            <!--TODO: Mostrar datos-->
-        </ListView>
-    </ScrollView>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2.5*"></RowDefinition>
+            <RowDefinition Height="25*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <HorizontalStackLayout Grid.Row="0">
+            <ImageButton Source="edit.png" MaximumWidthRequest="60" MaximumHeightRequest="60" Margin="5" HorizontalOptions="Start" VerticalOptions="Start"></ImageButton>
+            <ImageButton Source="delete.png" MaximumWidthRequest="60" MaximumHeightRequest="60" Margin="5" HorizontalOptions="Start" VerticalOptions="Start"></ImageButton>
+        </HorizontalStackLayout>
+        <ScrollView Grid.Row="1">
+            <ListView ItemsSource="{Binding Lista}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Margin="10">
+                                <Label FontSize="22">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0}. {1} {2}, {3}">
+                                            <Binding Path="id"/>
+                                            <Binding Path="nombre"/>
+                                            <Binding Path="apellidos"/>
+                                            <Binding Path="fechaNac"/>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+        <ImageButton Source="create.png" MaximumWidthRequest="80" MaximumHeightRequest="80" Margin="5" HorizontalOptions="End" VerticalOptions="End" Grid.Row="1"></ImageButton>
+    </Grid>
 
 </ContentPage>

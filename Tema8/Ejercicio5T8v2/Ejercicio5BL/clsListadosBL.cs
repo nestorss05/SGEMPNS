@@ -14,7 +14,15 @@ namespace Ejercicio5BL
         {
             List<clsPersona> miListado = clsListadosDAL.getListadoCompletoPersonas();
 
-            //TODO Comprobar si es jueves y antes o despues de las 13:30
+            if (DateTime.Now.DayOfWeek == DayOfWeek.Thursday)
+            {
+                if (DateTime.Now.Hour <= 13 && DateTime.Now.Minute < 30)
+                {
+                    miListado = miListado.Take(5).ToList();
+                } else {
+                    miListado = miListado.Skip(Math.Max(0, miListado.Count - 5)).ToList();
+                }
+            }
 
             return miListado;
         
