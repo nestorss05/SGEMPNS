@@ -7,7 +7,7 @@ namespace Ejercicio5BL
     public class clsListadosBL
     {
         /// <summary>
-        /// Funcion estatica que llama a la DAL, aplica las reglas de negocio oportunas y devuelve el listado de personas
+        /// Funcion estatica que llama a la DAL, aplica las reglas de negocio oportunas (controla el dia y la hora) y devuelve el listado de personas
         /// </summary>
         /// <returns>Listado de ClsPersonas en ObservableCollection</returns>
         public static List<clsPersona> listadoPersonasBL()
