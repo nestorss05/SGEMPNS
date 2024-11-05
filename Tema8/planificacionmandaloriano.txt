@@ -1,0 +1,26 @@
+ENT
+
+ClsMision: usada para almacenar la información de la misión
+- String nombre (get, set)
+- String descripción (get, set)
+- int recompensa (get, set)
++ ClsMision()
++ ClsMision(nombre, descripción, créditos)
+
+DAL
+
+ClsListadoDAL: ofrece listados
++ List<ClsMision>ObtenerMisiones(): ofrece un listado completo de misiones
++ ClsMision ObtenerMision(int id): ofrece una mision
+
+BL
+
+ClsListadoBL: llama a ClsListadoDAL y aplica restricciones
++ List<ClsMision>? ObtenerMisiones(): ofrece un listado completo de misiones
++ ClsMision ObtenerMision(int id): ofrece una mision
+
+VM
+
+ClsListadoVM:Mision - muestra el detalle de la misión
++ List<ClsMision>misiones(null = durmiendo, {} = sin misiones)
++ ClsMision misionSeleccionada
