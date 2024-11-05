@@ -1,8 +1,32 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@using EjercicioT8FinalENT
+@model EjercicioT8FinalVM.ClsListadoVM
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+@if (Model.misiones is not null)
+{
+    @using (Html.BeginForm("Detalles", "Home", FormMethod.Post))
+    {
+        <select name="id">
+            @foreach (ClsMision ms in Model.misiones)
+            {
+                <option value="@ms.id">@ms.nombre</option>
+            }
+        </select>
+        <br />
+        <br />
+        <button>Ver detalles</button>
+        <br />
+        <br />
+        @if (Model.misionSeleccionada is not null)
+        {
+            <div>@Model.misionSeleccionada.descripcion</div>
+            <div>Recompensa: @Model.misionSeleccionada.recompensa</div>
+        }
+    }
+}
+else
+{
+    <h1>A descansar campeon, que son muy tardias estas horas</h1>
+}

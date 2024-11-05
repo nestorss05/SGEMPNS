@@ -1,14 +1,14 @@
-<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\EjercicioT8FinalBL\EjercicioT8FinalBL.csproj" />
     <ProjectReference Include="..\EjercicioT8FinalENT\EjercicioT8FinalENT.csproj" />
-    <ProjectReference Include="..\EjercicioT8FinalVM\EjercicioT8FinalVM.csproj" />
   </ItemGroup>
 
 </Project>

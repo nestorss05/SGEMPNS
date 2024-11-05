@@ -1,4 +1,7 @@
 using EjercicioT8Final.Models;
+using EjercicioT8FinalBL;
+using EjercicioT8FinalENT;
+using EjercicioT8FinalVM;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,7 +18,15 @@ namespace EjercicioT8Final.Controllers
 
         public IActionResult Index()
         {
-            return View();
+            ClsListadoVM misiones = new ClsListadoVM(new List<ClsMision>(), new ClsMision());
+            return View(misiones);
+        }
+
+        [HttpPost]
+        public IActionResult Detalles(int id)
+        {
+            ClsListadoVM misiones = new ClsListadoVM(new List<ClsMision>(), new ClsMision(id, "", "", 0));
+            return View("Index", misiones);
         }
 
         public IActionResult Privacy()

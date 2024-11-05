@@ -1,6 +1,7 @@
 ENT
 
 ClsMision: usada para almacenar la información de la misión
+- int id (get, set)
 - String nombre (get, set)
 - String descripción (get, set)
 - int recompensa (get, set)
@@ -22,5 +23,5 @@ ClsListadoBL: llama a ClsListadoDAL y aplica restricciones
 VM
 
 ClsListadoVM:Mision - muestra el detalle de la misión
-+ List<ClsMision>misiones(null = durmiendo, {} = sin misiones)
++ List<ClsMision>? misiones(null = durmiendo, {} = sin misiones)
 + ClsMision misionSeleccionada
