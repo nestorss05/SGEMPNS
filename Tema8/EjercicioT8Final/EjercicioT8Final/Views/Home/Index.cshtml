@@ -2,7 +2,7 @@
     ViewData["Title"] = "Home Page";
 }
 @using EjercicioT8FinalENT
-@model EjercicioT8FinalVM.ClsListadoVM
+@model ClsListadoVM
 
 @if (Model.misiones is not null)
 {
@@ -11,7 +11,13 @@
         <select name="id">
             @foreach (ClsMision ms in Model.misiones)
             {
-                <option value="@ms.id">@ms.nombre</option>
+                if (Model.misionSeleccionada?.id == ms.id)
+                {
+                    <option value="@ms.id" selected>@ms.nombre</option>
+                } else
+                {
+                    <option value="@ms.id">@ms.nombre</option>
+                }
             }
         </select>
         <br />
@@ -19,7 +25,7 @@
         <button>Ver detalles</button>
         <br />
         <br />
-        @if (Model.misionSeleccionada is not null)
+        @if (Model.misionSeleccionada != null)
         {
             <div>@Model.misionSeleccionada.descripcion</div>
             <div>Recompensa: @Model.misionSeleccionada.recompensa</div>

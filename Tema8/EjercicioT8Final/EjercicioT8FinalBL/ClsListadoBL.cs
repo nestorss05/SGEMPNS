@@ -11,8 +11,9 @@ namespace EjercicioT8FinalBL
 
         /// <summary>
         /// Ofrece un listado de misiones con las restricciones aplicadas
+        /// Postcondicion: Devuelve nulo si se accede entre las 00 y 08 horas
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Listado de misiones con las restricciones aplicadas</returns>
         public static List<ClsMision>? ObtenerMisiones()
         {
             List<ClsMision>? misiones = ClsListadoDAL.ObtenerMisiones();

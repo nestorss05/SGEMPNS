@@ -16,7 +16,10 @@
             this.id = id;
             this.nombre = nombre;
             this.descripcion = descripcion;
-            this.recompensa = recompensa;
+            if (recompensa > 0)
+            {
+                this.recompensa = recompensa;
+            }
         }
     }
 }
