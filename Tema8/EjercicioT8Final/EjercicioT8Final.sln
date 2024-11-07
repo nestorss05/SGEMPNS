@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.11.35327.3
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EjercicioT8Final", "EjercicioT8Final\EjercicioT8Final.csproj", "{A72A1EBC-FD8D-4CB3-87C6-FFB86C40DD1E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EjercicioT8FinalUI", "EjercicioT8Final\EjercicioT8FinalUI.csproj", "{A72A1EBC-FD8D-4CB3-87C6-FFB86C40DD1E}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EjercicioT8FinalENT", "EjercicioT8FinalENT\EjercicioT8FinalENT.csproj", "{370F152A-32CC-4DBE-AAF9-AF22912F98EA}"
 EndProject
