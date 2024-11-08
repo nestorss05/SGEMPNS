@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vmodel="clr-namespace:EjercicioT8FinalMAUI.ViewModels"
+             x:Class="EjercicioT8FinalMAUI.Views.MainPage"
+             Title="El mandarinas">
+
+    <ContentPage.BindingContext>
+        <vmodel:ClsListadoVM></vmodel:ClsListadoVM>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <VerticalStackLayout Padding="30,0" Spacing="25">
+            <Label Text="Es muy tarde, duerme ya" IsVisible="{Binding VisibleError}"></Label>
+            <Picker IsVisible="{Binding VisiblePicker}" Title="Elige la mision" ItemsSource="{Binding Misiones}" ItemDisplayBinding="{Binding nombre}" SelectedItem="{Binding MisionSeleccionada}"/>
+            <Label Text="{Binding MisionSeleccionada.nombre}" FontSize="24"/>
+            <Label Text="{Binding MisionSeleccionada.descripcion}" />
+            <Label Text="{Binding MisionSeleccionada.recompensa}" />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

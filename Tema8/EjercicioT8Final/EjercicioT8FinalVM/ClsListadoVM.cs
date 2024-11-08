@@ -1,12 +1,12 @@
 ﻿using EjercicioT8FinalBL;
 using EjercicioT8FinalENT;
 
-namespace EjercicioT8FinalUI.Models
+namespace EjercicioT8FinalVM
 {
     /// <summary>
     /// Muestra los detalles de la mision
     /// </summary>
-    public class ClsListadoVM : ClsMision
+    public class ClsListadoVM: ClsMision
     {
         public List<ClsMision>? misiones
         {

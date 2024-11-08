@@ -3,6 +3,7 @@ using EjercicioT8FinalENT;
 using EjercicioT8Final;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
+using EjercicioT8FinalUI.Models;
 
 namespace EjercicioT8Final.Controllers
 {
