@@ -1,0 +1,15 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Index";
+}
+
+<div class="text-center">
+    <h1 class="display-4">EusebioDB</h1>
+    <form method="post" action="@Url.Action("AbrirConexion", "Home")">
+        <button type="submit">Iniciar BD</button>
+    </form>
+    @if (ViewBag.EstadoConexion != null)
+    {
+        <p>Estado: @ViewBag.EstadoConexion</p>
+    }
+</div>
