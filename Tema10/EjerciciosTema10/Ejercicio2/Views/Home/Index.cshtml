@@ -1,0 +1,11 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+    ViewBag.Title = "Index";
+}
+
+<div class="text-center">
+    <h1 class="display-4">EusebioDB: Ejercicio 2</h1>
+    <form method="post" action="@Url.Action("Listado", "Personas")">
+        <button type="submit">Acceder a los datos</button>
+    </form>
+</div>
