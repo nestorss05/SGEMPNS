@@ -1,5 +1,5 @@
-﻿using Ejercicio2.Models.DAL;
-using Ejercicio2.Models.ENT;
+﻿using Ejercicio2DAL;
+using Ejercicio2ENT;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Ejercicio2.Controllers

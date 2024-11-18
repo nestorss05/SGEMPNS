@@ -1,4 +1,5 @@
 using Ejercicio1.Models;
+using Ejercicio1DAL;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Data.SqlClient;
 using System.Diagnostics;
@@ -22,26 +23,7 @@ namespace Ejercicio1.Controllers
         [HttpPost]
         public IActionResult AbrirConexion()
         {
-            SqlConnection miConexion = new SqlConnection();
-            String estadoConexion;
-
-            try
-            {
-                miConexion.ConnectionString = "Server=tcp:nestorss.database.windows.net,1433;Initial Catalog=EusebioNS;Persist Security Info=False;User ID=usuario;Password=Lacampana123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-                miConexion.Open();
-                estadoConexion = miConexion.State.ToString();
-            } catch (Exception ex) {
-                estadoConexion = "Error: " + ex.Message;
-            } finally
-            {
-                if (miConexion.State == System.Data.ConnectionState.Open)
-                {
-                    miConexion.Close();
-                }
-            }
-
-            ViewBag.EstadoConexion = estadoConexion;
-
+            ViewBag.EstadoConexion = ClsConexionDAL.AbrirConexion();
             return View("Index");
         }
 

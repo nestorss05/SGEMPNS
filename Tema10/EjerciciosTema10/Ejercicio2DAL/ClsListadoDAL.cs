@@ -1,7 +1,7 @@
-﻿using Ejercicio2.Models.ENT;
+﻿using Ejercicio2ENT;
 using Microsoft.Data.SqlClient;
 
-namespace Ejercicio2.Models.DAL
+namespace Ejercicio2DAL
 {
     public class ClsListadoDAL
     {
@@ -28,11 +28,12 @@ namespace Ejercicio2.Models.DAL
 
                 miComando.Connection = miConexion;
                 miLector = miComando.ExecuteReader();
-                
+
                 //Si hay lineas en el lector
                 if (miLector.HasRows)
                 {
-                    while (miLector.Read()) { 
+                    while (miLector.Read())
+                    {
                         oPersona = new ClsPersona();
                         oPersona.Id = (int)miLector["ID"];
                         oPersona.Nombre = (String)miLector["Nombre"];

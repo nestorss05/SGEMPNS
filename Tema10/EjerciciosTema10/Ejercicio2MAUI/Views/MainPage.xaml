@@ -1,15 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vmodel="clr-namespace:Ejercicio2MAUI.ViewModels"
              x:Class="Ejercicio2MAUI.Views.MainPage"
              Title="">
 
-    <ScrollView>
-        <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-            <Label Text="EusebioDB MAUI Edition" FontSize="36"/>
+    <ContentPage.BindingContext>
+        <vmodel:ClsListadoVM></vmodel:ClsListadoVM>
+    </ContentPage.BindingContext>
+    <HorizontalStackLayout>
+        <ScrollView>
+            <ListView x:Name="PersonaView" ItemsSource="{Binding ListadoPersonas}" SelectedItem="{Binding PersonaSeleccionada}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell x:Name="{Binding Id}">
+                            <HorizontalStackLayout Margin="10">
+                                <Image Source="{Binding Foto}" WidthRequest="100" Margin="10"/>
+                                <Label FontSize="24" Margin="12" VerticalTextAlignment="Center">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0} {1}">
+                                            <Binding Path="Nombre"/>
+                                            <Binding Path="Apellidos"/>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
+                            </HorizontalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+        <VerticalStackLayout>
+            <Label FontSize="20" Text="{Binding PersonaSeleccionada.Id}" Margin="10" VerticalTextAlignment="Center"/>
+            <Label FontSize="20" Text="{Binding PersonaSeleccionada.Nombre}" Margin="10" VerticalTextAlignment="Center"/>
+            <Label FontSize="20" Text="{Binding PersonaSeleccionada.Apellidos}" Margin="10" VerticalTextAlignment="Center"/>
+            <Label FontSize="20" Text="{Binding PersonaSeleccionada.Telefono}" Margin="10" VerticalTextAlignment="Center"/>
+            <Label FontSize="20" Text="{Binding PersonaSeleccionada.Direccion}" Margin="10" VerticalTextAlignment="Center"/>
+            <Image Source="{Binding PersonaSeleccionada.Foto}" WidthRequest="100" Margin="10"/>
+            <Label FontSize="20" Text="{Binding PersonaSeleccionada.FechaNacimiento}" Margin="10" VerticalTextAlignment="Center"/>
+            <Label FontSize="20" Text="{Binding PersonaSeleccionada.IdDepartamento}" Margin="10" VerticalTextAlignment="Center"/>
         </VerticalStackLayout>
-    </ScrollView>
+    </HorizontalStackLayout>
 
 </ContentPage>

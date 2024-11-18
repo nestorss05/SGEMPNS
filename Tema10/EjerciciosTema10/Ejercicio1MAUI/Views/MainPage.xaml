@@ -1,18 +1,19 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Ejercicio1MAUI.Views.MainPage">
-
+             xmlns:vmodel="clr-namespace:Ejercicio1MAUI.ViewModels"
+             x:Class="Ejercicio1MAUI.Views.MainPage"
+             Title="">
+    <ContentPage.BindingContext>
+        <vmodel:ClsConexionVM></vmodel:ClsConexionVM>
+    </ContentPage.BindingContext>
     <ScrollView>
         <VerticalStackLayout
-            Padding="30,0"
-            Spacing="25">
-
-            <Label
-                Text="Hello, World!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
-
+        Padding="30,0"
+        Spacing="25">
+            <Label Text="EusebioDB MAUI Edition" FontSize="36"/>
+            <Button Text="Iniciar BD" Command="{Binding ConectarCommand}" WidthRequest="120" HorizontalOptions="Start" />
+            <Label Text="{Binding Conexion}" FontSize="24" FontAttributes="Bold, Italic" TextColor="Red"/>
         </VerticalStackLayout>
     </ScrollView>
 

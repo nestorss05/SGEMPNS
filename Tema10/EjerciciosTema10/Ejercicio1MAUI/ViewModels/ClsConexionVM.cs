@@ -1,41 +1,67 @@
-﻿using Java.Net;
-using Microsoft.Data.SqlClient;
+﻿using _18_CRUD_Personas_UWP_UI.ViewModels.Utilidades;
+using Ejercicio1DAL;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Ejercicio1MAUI.ViewModels
 {
-    public class ClsConexionVM
+    public class ClsConexionVM : INotifyPropertyChanged
     {
-        SqlConnection miConexion = new SqlConnection();
-        String estadoConexion = abrirConexion(miConexion);
+        #region Atributos
+        private String conexion;
+        private DelegateCommand conectarCommand;
+        #endregion
 
-        public static String abrirConexion(SqlConnection miConexion)
+        #region Propiedades
+        public String Conexion
         {
-            String estado = "";
+            get { return conexion; }
+            set { conexion = value; NotifyPropertyChanged("Conexion"); }
+        }
+        public DelegateCommand ConectarCommand
+        {
+            get { return conectarCommand; }
+        }
+        #endregion
+
+        #region Constructores
+        public ClsConexionVM()
+        {
             try
             {
-                miConexion.ConnectionString = "Server=tcp:nestorss.database.windows.net,1433;Initial Catalog=EusebioNS;Persist Security Info=False;User ID=usuario;Password=Lacampana123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-                miConexion.Open();
-                estado = miConexion.State.ToString();
+                conectarCommand = new DelegateCommand(ConectarCommand_Executed);
             }
             catch (Exception ex)
             {
-                estado = "Error: " + ex.Message;
+                ex.GetBaseException();
             }
-            finally
-            {
-                if (miConexion.State == System.Data.ConnectionState.Open)
-                {
-                    miConexion.Close();
-                }
-            }
-
-            return estado;
         }
-            
+        #endregion
+
+        #region Metodos
+
+        /// <summary>
+        /// Guarda el estado de la conexion en el atributo conexion
+        /// </summary>
+        private void ConectarCommand_Executed()
+        {
+            Conexion = ClsConexionDAL.AbrirConexion();
+        }
+        #endregion
+
+        #region PropertyChanged
+        public event PropertyChangedEventHandler? PropertyChanged;
+        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        {
+
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+
+        }
+        #endregion
     }
 }
