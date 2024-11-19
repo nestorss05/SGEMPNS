@@ -6,7 +6,7 @@ namespace EjercicioT8FinalUI.Models
     /// <summary>
     /// Muestra los detalles de la mision
     /// </summary>
-    public class ClsListadoVM : ClsMision
+    public class ClsListadoVM
     {
         public List<ClsMision>? misiones
         {
@@ -16,7 +16,7 @@ namespace EjercicioT8FinalUI.Models
             }
         }
 
-        public ClsMision misionSeleccionada { get; set; }
+        public ClsMision misionSeleccionada { get; }
 
         public ClsListadoVM() { }
 
