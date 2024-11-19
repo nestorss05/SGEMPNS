@@ -16,9 +16,7 @@ namespace Ejercicio2DAL
             SqlCommand miComando = new SqlCommand();
             SqlDataReader miLector;
             ClsPersona oPersona;
-            String database = "Server=tcp:nestorss.database.windows.net,1433;Initial Catalog=EusebioNS;Persist Security Info=False;User ID=usuario;Password=Lacampana123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
-            miConexion.ConnectionString = (database);
+            miConexion.ConnectionString = (ClsConexion.CadenaConexion());
             try
             {
                 miConexion.Open();
