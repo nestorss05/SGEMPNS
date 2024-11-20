@@ -14,6 +14,8 @@ namespace EjercicioCRUD_DAL
         /// <summary>
         /// Inserta un departamento en la BD
         /// </summary>
+        /// <pre>El departamento creado debe ser valido</pre>
+        /// <post>Puede devolver 0 o N dependiendo de la cantidad de filas afectadas</post>
         /// <param name="per">Departamento a añadir</param>
         /// <returns>Nº de filas afectadas</returns>
         public static int CrearDepartamentoDAL(ClsDepartamento dep)
@@ -44,11 +46,12 @@ namespace EjercicioCRUD_DAL
         /// <summary>
         /// Edita un departamento de la BD
         /// </summary>
+        /// <pre>El departamento debe existir en la BD</pre>
+        /// <post>Puede devolver 0 o N dependiendo de la cantidad de filas afectadas</post>
         /// <param name="per">Departamento a modificar</param>
         /// <returns>Nº de filas afectadas</returns>
         public static int EditarDepartamentoDAL(ClsDepartamento dep)
         {
-            // TODO: comprobante de existencia con funcion hecha
             int numeroFilasAfectadas = 0;
             SqlConnection miConexion = new SqlConnection();
             SqlCommand miComando = new SqlCommand();
@@ -76,11 +79,12 @@ namespace EjercicioCRUD_DAL
         /// <summary>
         /// Borra un departamento de la BD a base de su ID
         /// </summary>
+        /// <pre>El ID de departamento debe corresponder con uno que exista en la BD</pre>
+        /// <post>Puede devolver 0 o N dependiendo de la cantidad de filas afectadas</post>
         /// <param name="id">ID del departamento a eliminar</param>
         /// <returns>Nº de filas afectadas</returns>
         public static int BorrarDepartamentoDAL(int id)
         {
-            // TODO: comprobante de existencia con funcion hecha
             int numeroFilasAfectadas = 0;
             SqlConnection miConexion = new SqlConnection();
             SqlCommand miComando = new SqlCommand();

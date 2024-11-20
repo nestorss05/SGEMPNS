@@ -13,6 +13,8 @@ namespace EjercicioCRUD_DAL
         /// <summary>
         /// Inserta una persona en la BD
         /// </summary>
+        /// <pre>La persona creada debe ser valida</pre>
+        /// <post>Puede devolver 0 o N dependiendo de la cantidad de filas afectadas</post>
         /// <param name="per">Persona a añadir</param>
         /// <returns>Nº de filas afectadas</returns>
         public static int CrearPersonaDAL(ClsPersona per)
@@ -49,11 +51,12 @@ namespace EjercicioCRUD_DAL
         /// <summary>
         /// Edita una persona de la BD
         /// </summary>
+        /// <pre>La persona debe existir en la BD</pre>
+        /// <post>Puede devolver 0 o N dependiendo de la cantidad de filas afectadas</post>
         /// <param name="per">Persona a modificar</param>
         /// <returns>Nº de filas afectadas</returns>
         public static int EditarPersonaDAL(ClsPersona per)
         {
-            // TODO: comprobante de existencia con funcion hecha
             int numeroFilasAfectadas = 0;
             SqlConnection miConexion = new SqlConnection();
             SqlCommand miComando = new SqlCommand();
@@ -86,11 +89,12 @@ namespace EjercicioCRUD_DAL
         /// <summary>
         /// Borra una persona de la BD a base de su ID
         /// </summary>
+        /// <pre>El ID de persona debe corresponder con uno que exista en la BD</pre>
+        /// <post>Puede devolver 0 o N dependiendo de la cantidad de filas afectadas</post>
         /// <param name="id">ID de la persona a eliminar</param>
         /// <returns>Nº de filas afectadas</returns>
         public static int BorrarPersonaDAL(int id)
         {
-            // TODO: comprobante de existencia con funcion hecha
             int numeroFilasAfectadas = 0;
             SqlConnection miConexion = new SqlConnection();
             SqlCommand miComando = new SqlCommand();
