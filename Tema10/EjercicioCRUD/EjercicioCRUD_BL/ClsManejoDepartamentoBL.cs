@@ -48,5 +48,18 @@ namespace EjercicioCRUD_BL
             int numeroFilasAfectadas = ClsManejoDepartamentoDAL.BorrarDepartamentoDAL(id);
             return numeroFilasAfectadas;
         }
+
+        /// <summary>
+        /// Busca un departamento en la List
+        /// </summary>
+        /// <pre>El id deberia ser mayor que 0</pre>
+        /// <post>Puede devolver null si no ha encontrado un departamento</post>
+        /// <param name="id"></param>
+        /// <returns>Departamento encontrado</returns>
+        public static ClsDepartamento? BuscarDepartamentoBL(ClsDepartamento d)
+        {
+            ClsDepartamento? dep = ClsManejoDepartamentoDAL.BuscarDepartamentoDAL(d.Id);
+            return dep;
+        }
     }
 }

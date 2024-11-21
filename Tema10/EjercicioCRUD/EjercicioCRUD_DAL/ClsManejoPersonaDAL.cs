@@ -120,7 +120,7 @@ namespace EjercicioCRUD_DAL
         /// <summary>
         /// Busca una persona en la List
         /// </summary>
-        /// <pre>Ninguna</pre>
+        /// <pre>El id deberia ser mayor que 0</pre>
         /// <post>Puede devolver null si no ha encontrado una persona</post>
         /// <param name="id"></param>
         /// <returns>Persona encontrada</returns>

@@ -51,5 +51,18 @@ namespace EjercicioCRUD_BL
             return numeroFilasAfectadas;
         }
 
+        /// <summary>
+        /// Busca una persona en la List
+        /// </summary>
+        /// <pre>El id deberia ser mayor que 0</pre>
+        /// <post>Puede devolver null si no ha encontrado una persona</post>
+        /// <param name="id"></param>
+        /// <returns>Persona encontrada</returns>
+        public static ClsPersona? BuscarPersonaBL(ClsPersona p)
+        {
+            ClsPersona? per = ClsManejoPersonaDAL.BuscarPersonaDAL(p.Id);
+            return per;
+        }
+
     }
 }

@@ -7,6 +7,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\EjercicioCRUD_BL\EjercicioCRUD_BL.csproj" />
     <ProjectReference Include="..\EjercicioCRUD_ENT\EjercicioCRUD_ENT.csproj" />
   </ItemGroup>

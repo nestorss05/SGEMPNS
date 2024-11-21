@@ -110,11 +110,11 @@ namespace EjercicioCRUD_DAL
         /// <summary>
         /// Busca un departamento en la List
         /// </summary>
-        /// <pre>Ninguna</pre>
+        /// <pre>El id deberia ser mayor que 0</pre>
         /// <post>Puede devolver null si no ha encontrado un departamento</post>
         /// <param name="id"></param>
         /// <returns>Departamento encontrado</returns>
-        public static ClsDepartamento? BuscarPersonaDAL(int id)
+        public static ClsDepartamento? BuscarDepartamentoDAL(int id)
         {
             List<ClsDepartamento> departamentos = ClsListadoDAL.ObtenerDepartamentosDAL();
             ClsDepartamento dep = departamentos.Find(depx => depx.Id == id);
