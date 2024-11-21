@@ -1,0 +1,49 @@
+ENT
+ClsMision
+
+- int id
+- String nombre
+- String descripcion
+- int recompensa
+
++ int Id (get, set)
++ String Nombre (get, set)
++ String Descripcion (get, set)
++ int Recompensa (get, set)
+
++ ClsMision()
++ ClsMision(nombre, descripción, créditos)
+
+DAL
+ClsListadosDAL
+
+List<ClsMision> ListadoMisionesDAL()
+ClsMision ObtenerMisionSeleccionadaDAL(int id)
+
+BL
+ClsListadosBL
+
+List<ClsMision>? ListadoMisionesBL()
+ClsMision ObtenerMisionSeleccionadaBL(int id)
+
+UI (ASP.NET)
+
+ViewModels - ClsListadosVM
+- List<ClsMision>? listadoMisiones
+- ClsMision misionSeleccionada
++ List<ClsMision>? ListadoMisiones (get)
++ ClsMision MisionSeleccionada (get, set)
+
+ClsListadosVM() { listadoMisiones = ListadoMisionesBL() }
+ClsListadosVM(int id) { base; misionSeleccionada = ObtenerMisionSeleccionadaBL }
+
+Views
+
+-Home
+--Index
+
+Controllers
+
+HomeController
++ Index() return view()
++ Index(int id) return view(id)

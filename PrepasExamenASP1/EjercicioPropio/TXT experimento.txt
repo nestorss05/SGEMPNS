@@ -1,0 +1,66 @@
+Enunciado: Una BD de artistas y canciones, con sus BD falsas ya que seran Lists. Se pedira una pagina ASP.NET MVC que mostrara un listado de artistas. Al hacer clic en un artista, se mostrara un listado de canciones del artista. Tambien se mostrara el numero de canciones que tiene el artista
+
+ENT
+ClsArtista
++ int IdArtista (get, set)
++ string Nombre (get, set)
++ string Apellidos (get, set)
++ string NombreArtistico (get, set)
++ string DNI (get, set)
++ DateTime FechaNac (get, set)
++ string Residencia (get, set)
+
+ClsArtista()
+ClsArtista(int idArtista, string nombre, string apellidos, string nombreArtistico, string dni, DateTime fechaNac, string residencia)
+
+ClsCancion
++ int IdCancion (get, set)
++ int IdArtista (get, set)
++ string Nombre (get, set)
++ string Duracion (get, set)
++ string Genero (get, set)
++ int Año (get, set)
+
+ClsCancion()
+ClsCancion(int idCancion, int idArtista, string nombre, string duracion, string genero, int año)
+
+DAL
+ClsListadosDAL
++ static List<ClsArtista>ListadoArtistasDAL
++ static List<ClsCancion>ListadoCancionesDAL(int idArtista)
++ int CantidadCancionesArtistaDAL(int idArtista)
+
+BL
+ClsListadosBL
++ static List<ClsArtista>ListadoArtistasBL
++ static List<ClsCancion>ListadoCancionesBL(int idArtista)
++ int CantidadCancionesArtistaBL(int idArtista)
+
+UI (ASP.NET)
+
+ViewModels: ClsCancionesArtistaVM
+- List<ClsArtista>artistas
+- List<ClsCancion>canciones
+- int cantidadCanciones
+
++ List<ClsArtista>Artistas (get)
++ List<ClsCancion>Canciones (get)
++ int CantidadCanciones(get)
+
+ClsCancionesArtistaVM() { artistas = ListadoArtistasBL() }
+ClsCancionesArtistaVM(int idArtista): base() 
+{ 
+canciones = ListadoCancionesBL(idArtista) 
+cantidadCanciones = CantidadCancionesArtistaBL(idArtista) 
+}
+
+Views
+Home/Index
+
+Controllers
+
+Index
+return View(new ClsCancionesArtistaVM)
+
+Detalles(int idArtista)
+return View(new ClsCancionesArtistaVM)

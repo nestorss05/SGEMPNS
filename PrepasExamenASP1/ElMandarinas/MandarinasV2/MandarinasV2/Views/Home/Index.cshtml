@@ -1,0 +1,39 @@
+﻿@{
+    ViewData["Title"] = "Mandarinas";
+}
+@using MandarinasENT
+@model ClsListadosVM
+
+<div class="text-center">
+    @if (Model.ListadoMisiones is not null) {
+        @using (Html.BeginForm("Index", "Home", FormMethod.Post))
+        {
+            <h1 class="display-4">Ejercicio Mandarinas 2</h1>
+            <select name="id">
+                @foreach (ClsMision ms in Model.ListadoMisiones)
+                {
+                    if (Model.MisionSeleccionada?.Id == ms.Id)
+                    {
+                        <option value="@ms.Id" selected>@ms.Nombre</option>
+                    }
+                    else
+                    {
+                        <option value="@ms.Id">@ms.Nombre</option>
+                    }
+                }
+            </select>
+            <br />
+            <br />
+            <button>Ver detalles</button>
+            <br />
+            <br />
+            @if (Model.MisionSeleccionada != null) {
+                <div>@Model.MisionSeleccionada.Descripcion</div>
+                <div>Recompensa: @Model.MisionSeleccionada.Recompensa creditos</div>
+            }
+        }
+    } else {
+        <h1 class="display-4">Duermete niño, duermete ya</h1>
+        <p>Que si no, viene el coco y te comera</p>
+    }
+</div>

@@ -1,0 +1,70 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model ClsCancionesArtistaVM
+@using EjercicioArtistasENT
+
+<div class="text-center">
+    @if (Model.Artistas is not null) {
+        <h1 class="display-4">Listado de cantantes</h1>
+        <style>
+            table, td {
+                border: 1px solid black;
+            }
+        </style>
+        <table style="width:100%">
+            <tr>
+                <td>Id de artista</td>
+                <td>Nombre</td>
+                <td>Apellidos</td>
+                <td>Nombre Artistico</td>
+                <td>DNI</td>
+                <td>Fecha de nacimiento</td>
+                <td>Residencia</td>
+                <td>Accion</td>
+            </tr>
+            @foreach (ClsArtista art in Model.Artistas)
+            {
+                <tr>
+                    <td>@art.IdArtista</td>
+                    <td>@art.Nombre</td>
+                    <td>@art.Apellidos</td>
+                    <td>@art.NombreArtistico</td>
+                    <td>@art.DNI</td>
+                    <td>@art.FechaNac</td>
+                    <td>@art.Residencia</td>
+                    <td>@Html.ActionLink("Mas detalles...", "Detalles", new { idArtista = art.IdArtista })</td>
+                </tr>
+            }
+        </table>
+        @if (Model.Canciones is not null)
+        {
+            <p>LELELELELELEL</p>
+            <table style="width:100%">
+                <tr>
+                    <td>Id de cancion</td>
+                    <td>Id de artista</td>
+                    <td>Nombre</td>
+                    <td>Duracion</td>
+                    <td>Genero</td>
+                    <td>Año</td>
+                </tr>
+                @foreach (ClsCancion canc in Model.Canciones)
+                {
+                    <tr>
+                        <td>@canc.IdCancion</td>
+                        <td>@canc.IdArtista</td>
+                        <td>@canc.Nombre</td>
+                        <td>@canc.Duracion</td>
+                        <td>@canc.Genero</td>
+                        <td>@canc.Año</td>
+                    </tr>
+                }
+            </table>
+            <p>Cantidad de canciones: @Model.CantidadCanciones</p>
+        } 
+    } else {
+        <h1 class="display-4">Duermete niño, duermete ya</h1>
+        <p>Que si no, viene el AlCarajoException y te comera</p>
+    }
+</div>

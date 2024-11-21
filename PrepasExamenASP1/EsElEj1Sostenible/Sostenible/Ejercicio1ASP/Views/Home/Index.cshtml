@@ -1,0 +1,36 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+@model ClsListadosVM
+
+<div class="text-center">
+    <h1 class="display-4">Fernando apruebame ya</h1>
+    <p>Que no se si este ejercicio es sostenible CONIO</p>
+    <style>
+        table, td {
+            border: 1px solid black;
+        }
+    </style>
+    <table style="width:100%">
+        <tr>
+            <td>Nombre</td>
+            <td>Apellidos</td>
+            <td>Mayor de edad</td>
+        </tr>
+        @foreach (ClsListadosConBooleano per in Model.PersonasFull)
+        {
+            <tr>
+                <td>@per.Nombre</td>
+                <td>@per.Apellidos</td>
+                <td>
+                    @if (per.MayorEdad) {
+                        <input type="checkbox" checked disabled>
+                    } else {
+                        <input type="checkbox" disabled>
+                    }
+                    
+                </td>
+            </tr>
+        }
+    </table>
+</div>
