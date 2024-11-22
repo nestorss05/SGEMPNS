@@ -19,10 +19,10 @@ namespace EjercicioArtistasASP.Controllers
             return View(info);
         }
 
-        [HttpPost]
-        public IActionResult Detalles(int idArtista)
+        [HttpGet]
+        public IActionResult Detalles(int id)
         {
-            ClsCancionesArtistaVM info = new ClsCancionesArtistaVM(idArtista);
+            ClsCancionesArtistaVM info = new ClsCancionesArtistaVM(id);
             return View("Index", info);
         }
 
