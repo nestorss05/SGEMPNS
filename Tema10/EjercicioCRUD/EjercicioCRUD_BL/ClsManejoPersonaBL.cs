@@ -58,9 +58,9 @@ namespace EjercicioCRUD_BL
         /// <post>Puede devolver null si no ha encontrado una persona</post>
         /// <param name="id"></param>
         /// <returns>Persona encontrada</returns>
-        public static ClsPersona? BuscarPersonaBL(ClsPersona p)
+        public static ClsPersona? BuscarPersonaBL(int id)
         {
-            ClsPersona? per = ClsManejoPersonaDAL.BuscarPersonaDAL(p.Id);
+            ClsPersona? per = ClsManejoPersonaDAL.BuscarPersonaDAL(id);
             return per;
         }
 

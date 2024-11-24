@@ -23,7 +23,6 @@ namespace EjercicioCRUD_DAL
             SqlConnection miConexion = new SqlConnection();
             SqlCommand miComando = new SqlCommand();
             miConexion.ConnectionString = (ClsConexion.CadenaConexion());
-            miComando.Parameters.Add("@id", System.Data.SqlDbType.Int).Value = per.Id;
             miComando.Parameters.Add("@nombre", System.Data.SqlDbType.VarChar).Value = per.Nombre;
             miComando.Parameters.Add("@apellidos", System.Data.SqlDbType.VarChar).Value = per.Apellidos;
             miComando.Parameters.Add("@telefono", System.Data.SqlDbType.VarChar).Value = per.Telefono;
@@ -34,7 +33,8 @@ namespace EjercicioCRUD_DAL
             try
             {
                 miConexion.Open();
-                miComando.CommandText = "INSERT INTO Personas VALUES (@id, @nombre, @apellidos, @telefono, @direccion, @foto, @fechaNacimiento, @idDepartamento)";
+                miComando.CommandText = "INSERT INTO Personas VALUES (@nombre, @apellidos, @telefono, @direccion, @foto, @fechaNacimiento, @idDepartamento)";
+                miComando.Connection = miConexion;
                 numeroFilasAfectadas = miComando.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -72,7 +72,8 @@ namespace EjercicioCRUD_DAL
             try
             {
                 miConexion.Open();
-                miComando.CommandText = "UPDATE Personas SET Nombre = @nombre, Apellidos = @apellidos, Telefono = @telefono, Direccion = @direccion, Foto = @foto, FechaNacimiento = @fechaNacimiento, IdDepartamento = @idDepartamento WHERE ID = @id";
+                miComando.CommandText = "UPDATE Personas SET Nombre = @nombre, Apellidos = @apellidos, Telefono = @telefono, Direccion = @direccion, Foto = @foto, FechaNacimiento = @fechaNacimiento, IDDepartamento = @idDepartamento WHERE ID = @id";
+                miComando.Connection = miConexion;
                 numeroFilasAfectadas = miComando.ExecuteNonQuery();
             }
             catch (Exception ex)
@@ -104,6 +105,7 @@ namespace EjercicioCRUD_DAL
             {
                 miConexion.Open();
                 miComando.CommandText = "DELETE FROM Personas WHERE ID=@id";
+                miComando.Connection = miConexion;
                 numeroFilasAfectadas = miComando.ExecuteNonQuery();
             }
             catch (Exception ex)

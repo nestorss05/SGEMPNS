@@ -1,0 +1,59 @@
+﻿@model IEnumerable<EjercicioCRUD_ASP.Models.ViewModels.PersonaDepartamentoVM>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Departamento)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persona.Id)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persona.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persona.Apellidos)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Persona.Foto)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Departamento)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Persona.Id)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Persona.Nombre)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Persona.Apellidos)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Persona.Foto)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id=item.Persona.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Persona.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Persona.Id })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

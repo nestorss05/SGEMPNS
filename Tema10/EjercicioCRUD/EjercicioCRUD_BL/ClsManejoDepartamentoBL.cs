@@ -56,9 +56,9 @@ namespace EjercicioCRUD_BL
         /// <post>Puede devolver null si no ha encontrado un departamento</post>
         /// <param name="id"></param>
         /// <returns>Departamento encontrado</returns>
-        public static ClsDepartamento? BuscarDepartamentoBL(ClsDepartamento d)
+        public static ClsDepartamento? BuscarDepartamentoBL(int id)
         {
-            ClsDepartamento? dep = ClsManejoDepartamentoDAL.BuscarDepartamentoDAL(d.Id);
+            ClsDepartamento? dep = ClsManejoDepartamentoDAL.BuscarDepartamentoDAL(id);
             return dep;
         }
     }

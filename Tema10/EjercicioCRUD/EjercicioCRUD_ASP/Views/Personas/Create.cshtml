@@ -1,0 +1,48 @@
+﻿@model List<EjercicioCRUD_ENT.ClsDepartamento>
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Persona</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create" method="post">
+            <div class="form-group">
+                <label class="form-label" for="nombre">Nombre: </label>
+                <input class="form-control" type="text" name="Nombre" required />
+                <label class="form-label" for="apellidos">Apellidos: </label>
+                <input class="form-control" type="text" name="Apellidos" required />
+                <label class="form-label" for="foto">URL Foto:</label>
+                <input class="form-control" type="text" name="Foto" required />
+                <label class="form-label" for="telefono">Teléfono:</label>
+                <input class="form-control" type="number" name="Telefono" required />
+                <label class="form-label" for="direccion">Dirección:</label>
+                <input class="form-control" type="text" name="Direccion" required />
+                <label class="form-label" for="fechaNac">Fecha de nacimiento:</label>
+                <input class="form-control" type="date" name="FechaNacimiento" required />
+                <label class="form-label" for="IDDepartamento">Departamento: </label>
+                <select class="form-select" name="IDDepartamento" required>
+                    @foreach (var depto in Model)
+                    {
+                        <option value="@depto.Id">@depto.Nombre</option>
+                    }
+                </select>
+
+                <br />
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
