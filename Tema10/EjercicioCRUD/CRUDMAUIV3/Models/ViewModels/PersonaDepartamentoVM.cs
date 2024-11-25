@@ -13,17 +13,31 @@ namespace CRUDMAUIV3.Models.ViewModels
     public class PersonaDepartamentoVM
     {
 
+        private List<ClsPersona> personas;
         private List<PersonaListaDepartamentos> listadoPersonas;
 
         public List<PersonaListaDepartamentos> ListadoPersonas { get { return listadoPersonas; } }
 
         public PersonaDepartamentoVM()
         {
-            List<ClsPersona> personas = ClsListadoBL.ObtenerPersonasBL();
-            List<ClsDepartamento> departamentos = ClsListadoBL.ObtenerDepartamentosBL();
+            personas = ClsListadoBL.ObtenerPersonasBL();
             listadoPersonas = new List<PersonaListaDepartamentos>();
+            montarListado();
+        }
 
-
+        /// <summary>
+        /// Monta el listado de personas final para mostrarlo por pantalla
+        /// </summary>
+        /// <pre>Ninguna</pre>
+        /// <post>Ninguna</post>
+        private void montarListado()
+        {
+            PersonaListaDepartamentos itemNuevo;
+            foreach (ClsPersona per in personas)
+            {
+                itemNuevo = new PersonaListaDepartamentos(per);
+                listadoPersonas.Add(itemNuevo);
+            }
         }
     }
 }

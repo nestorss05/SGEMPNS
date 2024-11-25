@@ -9,31 +9,23 @@
     </ContentPage.BindingContext>
     <ScrollView>
         <VerticalStackLayout>
-            <HorizontalStackLayout>
+            <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="TODO Añadir"/>
                 <ListView x:Name="PersonaView" ItemsSource="{Binding ListadoPersonas}">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <ViewCell x:Name="{Binding Id}">
                                 <HorizontalStackLayout Margin="10">
-                                    <Image Source="{Binding ImageUrl}" WidthRequest="64" HeightRequest="64">
-                                        <Image.Clip>
-                                            <EllipseGeometry Center="32,32" RadiusX="32" RadiusY="32"/>
-                                        </Image.Clip>
-                                    </Image>
-                                    <Label FontSize="24" Margin="12" VerticalTextAlignment="Center">
-                                        <Label.Text>
-                                            <MultiBinding StringFormat="{}{0} {1}">
-                                                <Binding Path="Nombre"/>
-                                                <Binding Path="Apellidos"/>
-                                            </MultiBinding>
-                                        </Label.Text>
-                                    </Label>
+                                    <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding Id}"/>
+                                    <Image Source="{Binding Foto}" WidthRequest="64" HeightRequest="64" Margin="12"/>
+                                    <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding Nombre}"/>
+                                    <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding Apellidos}"/>
+                                    <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding NombreDepartamento}"/>
+                                    <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="TODO Editar / Detalles / Borrar"/>
                                 </HorizontalStackLayout>
                             </ViewCell>
                         </DataTemplate>
                     </ListView.ItemTemplate>
                 </ListView>
-            </HorizontalStackLayout>
         </VerticalStackLayout>
     </ScrollView>
 
