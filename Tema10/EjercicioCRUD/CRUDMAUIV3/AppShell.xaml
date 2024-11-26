@@ -17,4 +17,9 @@
         ContentTemplate="{DataTemplate local:Details}"
         Route="Details" />
 
+    <ShellContent
+        Title="Create"
+        ContentTemplate="{DataTemplate local:Create}"
+        Route="Create" />
+
 </Shell>

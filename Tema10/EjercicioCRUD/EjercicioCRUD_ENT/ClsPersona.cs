@@ -19,5 +19,19 @@
         public string Foto { get { return foto; } set { foto = value; } }
         public DateTime FechaNacimiento { get { return fechaNacimiento; } set { fechaNacimiento = value; } }
         public int IdDepartamento { get { return idDepartamento; } set { idDepartamento = value; } }
+
+        public ClsPersona(string nombre, string apellidos, string telefono, string direccion, string foto, DateTime fechaNacimiento, int idDepartamento)
+        {
+            this.nombre = nombre;
+            this.apellidos = apellidos;
+            this.telefono = telefono;
+            this.direccion = direccion;
+            this.foto = foto;
+            this.fechaNacimiento = fechaNacimiento;
+            this.idDepartamento = idDepartamento;
+        }
+
+        public ClsPersona() { }
+
     }
 }

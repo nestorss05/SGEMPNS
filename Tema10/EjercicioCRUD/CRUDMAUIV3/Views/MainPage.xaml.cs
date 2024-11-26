@@ -12,7 +12,8 @@ namespace CRUDMAUIV3.Views
         private void ContentPage_Appearing(object sender, EventArgs e)
         {
             PersonaDepartamentoVM miVM = this.BindingContext as PersonaDepartamentoVM;
-            // TODO: llamar a metodo para refrescar listado
+            miVM?.Refrescar();
+            // TODO: arreglar el refrescamiento
         }
     }
 

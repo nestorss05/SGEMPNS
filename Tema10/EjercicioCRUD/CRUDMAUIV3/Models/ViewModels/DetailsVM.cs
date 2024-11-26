@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Ejercicio1.ViewModels.Utilidades;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -14,6 +15,7 @@ namespace CRUDMAUIV3.Models.ViewModels
 
         #region Atributos
         private PersonaListaDepartamentos personaSeleccionada;
+        private DelegateCommand volverCommand;
         #endregion
 
         #region Propiedades
@@ -21,6 +23,40 @@ namespace CRUDMAUIV3.Models.ViewModels
         {
             get { return personaSeleccionada; }
             set { personaSeleccionada = value; NotifyPropertyChanged("PersonaSeleccionada"); }
+        }
+        public DelegateCommand VolverCommand
+        {
+            get
+            {
+                return volverCommand;
+            }
+        }
+        #endregion
+
+        #region constructores
+        public DetailsVM()
+        {
+            try
+            {
+                volverCommand = new DelegateCommand(VolverCommand_Executed);
+            }
+            catch (Exception ex)
+            {
+                ex.GetBaseException();
+            }
+        }
+
+        #endregion
+
+        #region metodos
+        /// <summary>
+        /// Metodo del comando VolverCommand que va hacia MainPage
+        /// <pre>Nada</pre>
+        /// <post>Nada</post>
+        /// </summary>
+        private async void VolverCommand_Executed()
+        {
+            await Shell.Current.GoToAsync("//MainPage");
         }
         #endregion
 

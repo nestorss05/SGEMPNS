@@ -39,7 +39,7 @@
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.NombreDepartamento}"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
-            <Button Text="Volver (TODO)"/>
+            <Button Text="Volver" Command="{Binding VolverCommand}"/>
             <Button Text="Editar (TODO)"/>
             <Button Text="Borrar (TODO)"/>
         </HorizontalStackLayout>

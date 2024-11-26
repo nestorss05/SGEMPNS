@@ -3,12 +3,15 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vmodel="clr-namespace:CRUDMAUIV3.Models.ViewModels"
              x:Class="CRUDMAUIV3.Views.MainPage"
+             Appearing="ContentPage_Appearing"
              Title="">
     <ContentPage.BindingContext>
         <vmodel:PersonaDepartamentoVM></vmodel:PersonaDepartamentoVM>
     </ContentPage.BindingContext>
     <Grid RowDefinitions="60, *, 60">
-        <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="TODO Añadir" Grid.Row="0"/>
+        <HorizontalStackLayout Grid.Row="0">
+            <Button Text="Añadir" Command="{Binding AniadirCommand}"/>
+        </HorizontalStackLayout>
         <ScrollView Grid.Row="1">
             <ListView x:Name="PersonaView" ItemsSource="{Binding ListadoPersonas}" SelectedItem="{Binding PersonaSeleccionada}">
                 <ListView.ItemTemplate>
@@ -28,7 +31,8 @@
         </ScrollView>
         <HorizontalStackLayout Grid.Row="2">
             <Button Text="Detalles" Command="{Binding DetallesCommand}"/>
-            <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="TODO Editar / Borrar"/>
+            <Button Text="Editar (TODO)"/>
+            <Button Text="Borrar (TODO)"/>
         </HorizontalStackLayout>
     </Grid>
 </ContentPage>
