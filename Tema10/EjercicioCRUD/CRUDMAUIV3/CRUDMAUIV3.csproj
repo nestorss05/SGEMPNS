@@ -67,4 +67,10 @@
 	  <ProjectReference Include="..\EjercicioCRUD_ENT\EjercicioCRUD_ENT.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <MauiXaml Update="Views\Details.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>

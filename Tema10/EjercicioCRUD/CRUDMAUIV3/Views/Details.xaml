@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vmodel="clr-namespace:CRUDMAUIV3.Models.ViewModels"
+             x:Class="CRUDMAUIV3.Views.Details"
+             Title="">
+    <ContentPage.BindingContext>
+        <vmodel:DetailsVM></vmodel:DetailsVM>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <Image Source="{Binding PersonaSeleccionada.Foto}" WidthRequest="64" HeightRequest="64" Margin="12" HorizontalOptions="Start"/>
+        <HorizontalStackLayout>
+            <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="ID: "/>
+            <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.Id}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="Nombre: "/>
+            <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.Nombre}"/>
+            <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.Apellidos}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Direccion: "/>
+            <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.Direccion}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Fecha de nacimiento: "/>
+            <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.FechaNacimiento}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Telefono: "/>
+            <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.Telefono}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="ID de departamento: "/>
+            <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.IdDepartamento}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Nombre de departamento: "/>
+            <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.NombreDepartamento}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
+            <Button Text="Volver (TODO)"/>
+            <Button Text="Editar (TODO)"/>
+            <Button Text="Borrar (TODO)"/>
+        </HorizontalStackLayout>
+    </StackLayout>
+</ContentPage>

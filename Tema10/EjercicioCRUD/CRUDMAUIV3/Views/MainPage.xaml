@@ -7,26 +7,28 @@
     <ContentPage.BindingContext>
         <vmodel:PersonaDepartamentoVM></vmodel:PersonaDepartamentoVM>
     </ContentPage.BindingContext>
-    <ScrollView>
-        <VerticalStackLayout>
-            <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="TODO Añadir"/>
-                <ListView x:Name="PersonaView" ItemsSource="{Binding ListadoPersonas}">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <ViewCell x:Name="{Binding Id}">
-                                <HorizontalStackLayout Margin="10">
-                                    <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding Id}"/>
-                                    <Image Source="{Binding Foto}" WidthRequest="64" HeightRequest="64" Margin="12"/>
-                                    <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding Nombre}"/>
-                                    <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding Apellidos}"/>
-                                    <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding NombreDepartamento}"/>
-                                    <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="TODO Editar / Detalles / Borrar"/>
-                                </HorizontalStackLayout>
-                            </ViewCell>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-        </VerticalStackLayout>
-    </ScrollView>
-
+    <Grid RowDefinitions="60, *, 60">
+        <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="TODO Añadir" Grid.Row="0"/>
+        <ScrollView Grid.Row="1">
+            <ListView x:Name="PersonaView" ItemsSource="{Binding ListadoPersonas}" SelectedItem="{Binding PersonaSeleccionada}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell x:Name="{Binding Id}">
+                            <HorizontalStackLayout Margin="10">
+                                <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding Id}"/>
+                                <Image Source="{Binding Foto}" WidthRequest="64" HeightRequest="64" Margin="12"/>
+                                <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding Nombre}"/>
+                                <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding Apellidos}"/>
+                                <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding NombreDepartamento}"/>
+                            </HorizontalStackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ScrollView>
+        <HorizontalStackLayout Grid.Row="2">
+            <Button Text="Detalles" Command="{Binding DetallesCommand}"/>
+            <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="TODO Editar / Borrar"/>
+        </HorizontalStackLayout>
+    </Grid>
 </ContentPage>
