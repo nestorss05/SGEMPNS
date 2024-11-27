@@ -38,10 +38,10 @@
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Nombre de departamento: "/>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.NombreDepartamento}"/>
         </HorizontalStackLayout>
-        <HorizontalStackLayout>
-            <Button Text="Volver" Command="{Binding VolverCommand}"/>
-            <Button Text="Editar (TODO)"/>
-            <Button Text="Borrar (TODO)"/>
+        <HorizontalStackLayout Margin="12">
+            <Button Text="Volver" Command="{Binding VolverCommand}" Margin="6"/>
+            <Button Text="Editar" Command="{Binding EditCommand}" Margin="6"/>
+            <Button Text="Borrar" Command="{Binding DeleteCommand}" Margin="6"/>
         </HorizontalStackLayout>
     </StackLayout>
 </ContentPage>

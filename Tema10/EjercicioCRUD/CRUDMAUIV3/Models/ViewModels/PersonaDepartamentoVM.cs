@@ -4,6 +4,7 @@ using EjercicioCRUD_ENT;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
@@ -16,7 +17,7 @@ namespace CRUDMAUIV3.Models.ViewModels
     {
 
         #region atributos
-        private List<PersonaListaDepartamentos> listadoPersonas;
+        private ObservableCollection<PersonaListaDepartamentos> listadoPersonas;
         private PersonaListaDepartamentos personaSeleccionada;
         private DelegateCommand detallesCommand;
         private DelegateCommand aniadirCommand;
@@ -25,10 +26,14 @@ namespace CRUDMAUIV3.Models.ViewModels
         #endregion
 
         #region propiedades
-        public List<PersonaListaDepartamentos> ListadoPersonas
+        public ObservableCollection<PersonaListaDepartamentos> ListadoPersonas
         { 
             get { return listadoPersonas; } 
-            set { listadoPersonas = value; NotifyPropertyChanged("ListadoPersonas"); }
+            set 
+            { 
+                listadoPersonas = value; 
+                NotifyPropertyChanged("ListadoPersonas"); 
+            }
         }
         public PersonaListaDepartamentos PersonaSeleccionada
         {
@@ -164,8 +169,9 @@ namespace CRUDMAUIV3.Models.ViewModels
                 List<ClsPersona> personas = ClsListadoBL.ObtenerPersonasBL();
                 if (listadoPersonas.IsNullOrEmpty())
                 {
-                    listadoPersonas = new List<PersonaListaDepartamentos>();
-                } else
+                    listadoPersonas = new ObservableCollection<PersonaListaDepartamentos>();
+                } 
+                else
                 {
                     listadoPersonas.Clear();
                 }
@@ -173,6 +179,7 @@ namespace CRUDMAUIV3.Models.ViewModels
                 {
                     listadoPersonas.Add(new PersonaListaDepartamentos(per));
                 }
+                NotifyPropertyChanged("ListadoPersonas");
             }
             catch (Exception ex)
             {

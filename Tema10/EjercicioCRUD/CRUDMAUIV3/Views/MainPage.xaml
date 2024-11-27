@@ -3,36 +3,41 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vmodel="clr-namespace:CRUDMAUIV3.Models.ViewModels"
              x:Class="CRUDMAUIV3.Views.MainPage"
-             Appearing="ContentPage_Appearing"
              Title="">
     <ContentPage.BindingContext>
         <vmodel:PersonaDepartamentoVM></vmodel:PersonaDepartamentoVM>
     </ContentPage.BindingContext>
-    <Grid RowDefinitions="60, *, 60">
-        <HorizontalStackLayout Grid.Row="0">
+    <Grid RowDefinitions="80, *, 80">
+        <HorizontalStackLayout Grid.Row="0" Margin="12">
             <Button Text="Añadir" Command="{Binding AniadirCommand}"/>
         </HorizontalStackLayout>
         <ScrollView Grid.Row="1">
             <ListView x:Name="PersonaView" ItemsSource="{Binding ListadoPersonas}" SelectedItem="{Binding PersonaSeleccionada}">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <ViewCell x:Name="{Binding Id}">
-                            <HorizontalStackLayout Margin="10">
-                                <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding Id}"/>
-                                <Image Source="{Binding Foto}" WidthRequest="64" HeightRequest="64" Margin="12"/>
-                                <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding Nombre}"/>
-                                <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding Apellidos}"/>
-                                <Label FontSize="24" VerticalTextAlignment="Center" Margin="12" Text="{Binding NombreDepartamento}"/>
+                        <ViewCell>
+                            <HorizontalStackLayout Padding="10" HeightRequest="80">
+                                <Image Source="{Binding Foto}" WidthRequest="50" HeightRequest="50" Margin="4"/>
+                                <Label FontSize="20" Margin="4" VerticalOptions="Center">
+                                    <Label.Text>
+                                        <MultiBinding StringFormat="{}{0}. {1} {2}, {3}">
+                                            <Binding Path="Id"/>
+                                            <Binding Path="Nombre"/>
+                                            <Binding Path="Apellidos"/>
+                                            <Binding Path="NombreDepartamento"/>
+                                        </MultiBinding>
+                                    </Label.Text>
+                                </Label>
                             </HorizontalStackLayout>
                         </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
         </ScrollView>
-        <HorizontalStackLayout Grid.Row="2">
-            <Button Text="Detalles" Command="{Binding DetallesCommand}"/>
-            <Button Text="Editar" Command="{Binding EditCommand}"/>
-            <Button Text="Borrar" Command="{Binding DeleteCommand}"/>
+        <HorizontalStackLayout Grid.Row="2" Margin="12">
+            <Button Text="Detalles" Command="{Binding DetallesCommand}" Margin="6"/>
+            <Button Text="Editar" Command="{Binding EditCommand}" Margin="6"/>
+            <Button Text="Borrar" Command="{Binding DeleteCommand}" Margin="6"/>
         </HorizontalStackLayout>
     </Grid>
 </ContentPage>

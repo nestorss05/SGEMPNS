@@ -8,10 +8,18 @@
         <vmodel:DeleteVM></vmodel:DeleteVM>
     </ContentPage.BindingContext>
     <VerticalStackLayout>
-        <Label Text="{Binding PersonaSeleccionada.Id}"/>
-        <Label Text="{Binding PersonaSeleccionada.Nombre}"/>
-        <Label Text="¿Estas seguro?" FontSize="24"/>
-        <Button Text="Si" Command="{Binding DeleteCommand}"/>
-        <Button Text="No" Command="{Binding VolverCommand}"/>
+        <HorizontalStackLayout Margin="12">
+            <Label Text="ID: " FontSize="24"/>
+            <Label Text="{Binding PersonaSeleccionada.Id}" FontSize="24"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout Margin="12">
+            <Label Text="Nombre: " FontSize="24"/>
+            <Label Text="{Binding PersonaSeleccionada.Nombre}" FontSize="24"/>
+        </HorizontalStackLayout>
+        <Label Text="¿Estas seguro?" FontSize="24" Margin="12"/>
+        <HorizontalStackLayout Margin="12">
+            <Button Text="Si" Command="{Binding DeleteCommand}" Margin="6"/>
+            <Button Text="No" Command="{Binding VolverCommand}" Margin="6"/>
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>

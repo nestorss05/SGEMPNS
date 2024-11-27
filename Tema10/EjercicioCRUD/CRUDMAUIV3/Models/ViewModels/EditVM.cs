@@ -27,39 +27,41 @@ namespace CRUDMAUIV3.Models.ViewModels
         public PersonaListaDepartamentos PersonaSeleccionada
         {
             get { return personaSeleccionada; }
-            set { personaSeleccionada = value; NotifyPropertyChanged("PersonaSeleccionada"); }
+            set 
+            { 
+                personaSeleccionada = value; 
+                NotifyPropertyChanged("PersonaSeleccionada");
+
+                // Debido a que estableciendo los valores en el constructor me darian null, he optado por actualizarlos en una funcion por separado
+                ActualizarValores();
+            }
         }
-        public int Id
-        {
-            get { return base.Id; }
-            set { base.Id = value; NotifyPropertyChanged("Id"); editCommand.RaiseCanExecuteChanged(); }
-        }
-        public string Nombre
+        public new string Nombre
         {
             get { return base.Nombre; }
             set { base.Nombre = value; NotifyPropertyChanged("Nombre"); editCommand.RaiseCanExecuteChanged(); }
         }
-        public string Apellidos
+        public new string Apellidos
         {
             get { return base.Apellidos; }
             set { base.Apellidos = value; NotifyPropertyChanged("Apellidos"); editCommand.RaiseCanExecuteChanged(); }
         }
-        public string Direccion
+        public new string Direccion
         {
             get { return base.Direccion; }
             set { base.Direccion = value; NotifyPropertyChanged("Direccion"); editCommand.RaiseCanExecuteChanged(); }
         }
-        public string Foto
+        public new string Foto
         {
             get { return base.Foto; }
             set { base.Foto = value; NotifyPropertyChanged("Foto"); editCommand.RaiseCanExecuteChanged(); }
         }
-        public DateTime FechaNacimiento
+        public new DateTime FechaNacimiento
         {
             get { return base.FechaNacimiento; }
             set { base.FechaNacimiento = value; NotifyPropertyChanged("FechaNacimiento"); editCommand.RaiseCanExecuteChanged(); }
         }
-        public string Telefono
+        public new string Telefono
         {
             get { return base.Telefono; }
             set { base.Telefono = value; NotifyPropertyChanged("Telefono"); editCommand.RaiseCanExecuteChanged(); }
@@ -98,20 +100,8 @@ namespace CRUDMAUIV3.Models.ViewModels
         {
             try
             {
-
                 // TODO por algun motivo, el EditVM no funciona como deberia y PersonaSeleccionada es nulo
-
-                base.Id = personaSeleccionada.Id;
-                base.Nombre = personaSeleccionada.Nombre;
-                base.Apellidos = personaSeleccionada.Apellidos;
-                base.Direccion = personaSeleccionada.Direccion;
-                base.Foto = personaSeleccionada.Foto;
-                base.FechaNacimiento = personaSeleccionada.FechaNacimiento;
-                base.Telefono = personaSeleccionada.Telefono;
-                base.IdDepartamento = personaSeleccionada.IdDepartamento;
-
                 departamentos = ClsListadoBL.ObtenerDepartamentosBL();
-                depSeleccionado = ClsManejoDepartamentoBL.BuscarDepartamentoBL(personaSeleccionada.IdDepartamento);
                 volverCommand = new DelegateCommand(VolverCommand_Executed);
                 editCommand = new DelegateCommand(EditCommand_Executed, EditCommand_CanExecute);
             }
@@ -125,6 +115,23 @@ namespace CRUDMAUIV3.Models.ViewModels
         #region Metodos
 
         /// <summary>
+        /// Metodo que actualiza los valores de la informacion de la vista Edit a los pasados por parametro
+        /// </summary>
+        /// <pre>Nada</pre>
+        /// <post>Nada</post>
+        private void ActualizarValores()
+        {
+            Nombre = personaSeleccionada.Nombre;
+            Apellidos = personaSeleccionada.Apellidos;
+            Direccion = personaSeleccionada.Direccion;
+            Foto = personaSeleccionada.Foto;
+            FechaNacimiento = personaSeleccionada.FechaNacimiento;
+            Telefono = personaSeleccionada.Telefono;
+            IdDepartamento = personaSeleccionada.IdDepartamento;
+            DepSeleccionado = departamentos[IdDepartamento - 1];
+        }
+
+        /// <summary>
         /// Metodo del comando VolverCommand que va hacia MainPage
         /// <pre>Nada</pre>
         /// <post>Nada</post>
@@ -135,21 +142,21 @@ namespace CRUDMAUIV3.Models.ViewModels
         }
 
         /// <summary>
-        /// Metodo del comando CreateCommand para crear la persona y despues ir hacia MainPage
+        /// Metodo del comando CreateCommand para modificar la persona y despues ir hacia MainPage
         /// <pre>Nada</pre>
         /// <post>Nada</post>
         /// </summary>
         private async void EditCommand_Executed()
         {
             ClsPersona per = new ClsPersona();
-            per.Id = this.Id;
+            per.Id = personaSeleccionada.Id;
             per.Nombre = this.Nombre;
             per.Apellidos = this.Apellidos;
             per.Direccion = this.Direccion;
             per.Foto = this.Foto;
             per.FechaNacimiento = this.FechaNacimiento;
             per.Telefono = this.Telefono;
-            per.IdDepartamento = this.IdDepartamento;
+            per.IdDepartamento = depSeleccionado.Id;
             int res = ClsManejoPersonaBL.EditarPersonaBL(per);
             if (res == 1)
             {
@@ -171,11 +178,11 @@ namespace CRUDMAUIV3.Models.ViewModels
         /// <returns>Booleana que habilita / deshabilita el boton de Editar</returns>
         private bool EditCommand_CanExecute()
         {
-            return !string.IsNullOrWhiteSpace(this.Nombre) &&
-               !string.IsNullOrWhiteSpace(this.Apellidos) &&
-               !string.IsNullOrWhiteSpace(this.Direccion) &&
-               !string.IsNullOrWhiteSpace(this.Foto) &&
-               !string.IsNullOrWhiteSpace(this.Telefono);
+            return !string.IsNullOrWhiteSpace(Nombre) &&
+               !string.IsNullOrWhiteSpace(Apellidos) &&
+               !string.IsNullOrWhiteSpace(Direccion) &&
+               !string.IsNullOrWhiteSpace(Foto) &&
+               !string.IsNullOrWhiteSpace(Telefono);
         }
 
         #endregion

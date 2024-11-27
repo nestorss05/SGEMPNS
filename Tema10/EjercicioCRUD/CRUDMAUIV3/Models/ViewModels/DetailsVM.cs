@@ -16,6 +16,8 @@ namespace CRUDMAUIV3.Models.ViewModels
         #region Atributos
         private PersonaListaDepartamentos personaSeleccionada;
         private DelegateCommand volverCommand;
+        private DelegateCommand editCommand;
+        private DelegateCommand deleteCommand;
         #endregion
 
         #region Propiedades
@@ -31,6 +33,21 @@ namespace CRUDMAUIV3.Models.ViewModels
                 return volverCommand;
             }
         }
+        public DelegateCommand EditCommand
+        {
+            get
+            {
+                return editCommand;
+            }
+        }
+
+        public DelegateCommand DeleteCommand
+        {
+            get
+            {
+                return deleteCommand;
+            }
+        }
         #endregion
 
         #region constructores
@@ -39,13 +56,14 @@ namespace CRUDMAUIV3.Models.ViewModels
             try
             {
                 volverCommand = new DelegateCommand(VolverCommand_Executed);
+                editCommand = new DelegateCommand(EditCommand_Executed);
+                deleteCommand = new DelegateCommand(DeleteCommand_Executed);
             }
             catch (Exception ex)
             {
                 ex.GetBaseException();
             }
         }
-
         #endregion
 
         #region metodos
@@ -57,6 +75,33 @@ namespace CRUDMAUIV3.Models.ViewModels
         private async void VolverCommand_Executed()
         {
             await Shell.Current.GoToAsync("//MainPage");
+        }
+        /// <summary>
+        /// Metodo que usa a la persona seleccionada como parametro y navega hacia la pagina de editado
+        /// </summary>
+        /// <pre>La persona seleccionada debe ser valida</pre>
+        /// <post>Nada</post>
+        private async void EditCommand_Executed()
+        {
+            var navigationParameter = new ShellNavigationQueryParameters
+            {
+                { "PersonaSeleccionada", personaSeleccionada }
+            };
+            await Shell.Current.GoToAsync("//Edit", navigationParameter);
+        }
+
+        /// <summary>
+        /// Metodo que usa a la persona seleccionada como parametro y navega hacia la pagina de borrado
+        /// </summary>
+        /// <pre>La persona seleccionada debe ser valida</pre>
+        /// <post>Nada</post>
+        private async void DeleteCommand_Executed()
+        {
+            var navigationParameter = new ShellNavigationQueryParameters
+            {
+                { "PersonaSeleccionada", personaSeleccionada }
+            };
+            await Shell.Current.GoToAsync("//Delete", navigationParameter);
         }
         #endregion
 

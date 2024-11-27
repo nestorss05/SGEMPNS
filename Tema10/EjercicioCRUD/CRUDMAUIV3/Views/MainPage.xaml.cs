@@ -9,12 +9,14 @@ namespace CRUDMAUIV3.Views
             InitializeComponent();
         }
 
-        private void ContentPage_Appearing(object sender, EventArgs e)
+        protected override void OnAppearing()
         {
             base.OnAppearing();
-            PersonaDepartamentoVM miVM = BindingContext as PersonaDepartamentoVM;
-            miVM?.Refrescar();
-            // TODO: arreglar el refrescamiento
+            if (BindingContext is PersonaDepartamentoVM miVM)
+            {
+                // TODO: arreglar el refrescamiento
+                miVM?.Refrescar();
+            }
         }
     }
 

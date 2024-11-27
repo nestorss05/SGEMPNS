@@ -10,33 +10,35 @@
     <VerticalStackLayout>
         <HorizontalStackLayout>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Nombre: "/>
-            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Nombre}"/>
+            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Nombre}" MinimumWidthRequest="200"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Apellidos: "/>
-            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Apellidos}"/>
+            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Apellidos}" MinimumWidthRequest="200"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Direccion: "/>
-            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Direccion}"/>
+            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Direccion}" MinimumWidthRequest="200"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Enlace a foto: "/>
-            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Foto}"/>
+            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Foto}" MinimumWidthRequest="200"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Fecha de nacimiento: "/>
-            <DatePicker MaximumDate="{Binding FechaActual}" Date="{Binding FechaNacimiento}"/>
+            <DatePicker MaximumDate="{Binding FechaActual}" Date="{Binding FechaNacimiento}" MinimumWidthRequest="200" Margin="12"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Telefono: "/>
-            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Telefono}"/>
+            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Telefono}" MinimumWidthRequest="200"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="ID de departamento: "/>
-            <Picker ItemsSource="{Binding Departamentos}" ItemDisplayBinding="{Binding Nombre}" SelectedItem="{Binding DepSeleccionado}" />
+            <Picker ItemsSource="{Binding Departamentos}" ItemDisplayBinding="{Binding Nombre}" SelectedItem="{Binding DepSeleccionado}" Margin="12"/>
         </HorizontalStackLayout>
-        <Button Text="Volver" Command="{Binding VolverCommand}"/>
-        <Button Text="Crear" Command="{Binding CreateCommand}"/>
+        <HorizontalStackLayout Margin="12">
+            <Button Text="Crear" Command="{Binding CreateCommand}" Margin="6"/>
+            <Button Text="Volver" Command="{Binding VolverCommand}" Margin="6"/>
+        </HorizontalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
