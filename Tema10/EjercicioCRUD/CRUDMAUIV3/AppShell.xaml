@@ -22,4 +22,14 @@
         ContentTemplate="{DataTemplate local:Create}"
         Route="Create" />
 
+    <ShellContent
+        Title="Edit"
+        ContentTemplate="{DataTemplate local:Edit}"
+        Route="Edit" />
+
+    <ShellContent
+        Title="Delete"
+        ContentTemplate="{DataTemplate local:Delete}"
+        Route="Delete" />
+
 </Shell>

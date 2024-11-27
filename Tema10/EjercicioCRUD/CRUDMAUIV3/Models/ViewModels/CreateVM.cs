@@ -11,15 +11,9 @@ using System.Threading.Tasks;
 
 namespace CRUDMAUIV3.Models.ViewModels
 {
-    public class CreateVM : INotifyPropertyChanged
+    public class CreateVM : ClsPersona, INotifyPropertyChanged
     {
         #region Atributos
-        private string nombre;
-        private string apellidos;
-        private string direccion;
-        private string foto;
-        private DateTime fechaNacimiento;
-        private string telefono;
         private DelegateCommand volverCommand;
         private DelegateCommand createCommand;
         private ClsDepartamento depSeleccionado;
@@ -29,33 +23,33 @@ namespace CRUDMAUIV3.Models.ViewModels
         #region Propiedades
         public string Nombre
         {
-            get { return nombre; }
-            set { nombre = value; NotifyPropertyChanged("Nombre"); createCommand.RaiseCanExecuteChanged(); }
+            get { return base.Nombre; }
+            set { base.Nombre = value; NotifyPropertyChanged("Nombre"); createCommand.RaiseCanExecuteChanged(); }
         }
         public string Apellidos
         {
-            get { return apellidos; }
-            set { apellidos = value; NotifyPropertyChanged("Apellidos"); createCommand.RaiseCanExecuteChanged(); }
+            get { return base.Apellidos; }
+            set { base.Apellidos = value; NotifyPropertyChanged("Apellidos"); createCommand.RaiseCanExecuteChanged(); }
         }
         public string Direccion
         {
-            get { return direccion; }
-            set { direccion = value; NotifyPropertyChanged("Direccion"); createCommand.RaiseCanExecuteChanged(); }
+            get { return base.Direccion; }
+            set { base.Direccion = value; NotifyPropertyChanged("Direccion"); createCommand.RaiseCanExecuteChanged(); }
         }
         public string Foto
         {
-            get { return foto; }
-            set { foto = value; NotifyPropertyChanged("Foto"); createCommand.RaiseCanExecuteChanged(); }
+            get { return base.Foto; }
+            set { base.Foto = value; NotifyPropertyChanged("Foto"); createCommand.RaiseCanExecuteChanged(); }
         }
         public DateTime FechaNacimiento
         {
-            get { return fechaNacimiento; }
-            set { fechaNacimiento = value; NotifyPropertyChanged("FechaNacimiento"); createCommand.RaiseCanExecuteChanged(); }
+            get { return base.FechaNacimiento; }
+            set { base.FechaNacimiento = value; NotifyPropertyChanged("FechaNacimiento"); createCommand.RaiseCanExecuteChanged(); }
         }
         public string Telefono
         {
-            get { return telefono; }
-            set { telefono = value; NotifyPropertyChanged("Telefono"); createCommand.RaiseCanExecuteChanged(); }
+            get { return base.Telefono; }
+            set { base.Telefono = value; NotifyPropertyChanged("Telefono"); createCommand.RaiseCanExecuteChanged(); }
         }
         public DateTime FechaActual
         {
@@ -84,13 +78,13 @@ namespace CRUDMAUIV3.Models.ViewModels
         #endregion
 
         #region constructores
-        public CreateVM()
+        public CreateVM(): base()
         {
             try
             {
-                fechaNacimiento = DateTime.Now;
+                base.FechaNacimiento = DateTime.Now;
                 departamentos = ClsListadoBL.ObtenerDepartamentosBL();
-                depSeleccionado = departamentos[0];
+                depSeleccionado = departamentos.FirstOrDefault();
                 volverCommand = new DelegateCommand(VolverCommand_Executed);
                 createCommand = new DelegateCommand(CreateCommand_Executed, CreateCommand_CanExecute);
             }
@@ -119,7 +113,7 @@ namespace CRUDMAUIV3.Models.ViewModels
         /// </summary>
         private async void CreateCommand_Executed()
         {
-            ClsPersona per = new ClsPersona(nombre, apellidos, telefono, direccion, foto, fechaNacimiento, depSeleccionado.Id);
+            ClsPersona per = new ClsPersona(this.Nombre, this.Apellidos, this.Telefono, this.Direccion, this.Foto, this.FechaNacimiento, depSeleccionado.Id);
             int res = ClsManejoPersonaBL.CrearPersonaBL(per);
             if (res == 1)
             {
@@ -140,12 +134,11 @@ namespace CRUDMAUIV3.Models.ViewModels
         /// <returns>Booleana que habilita / deshabilita el boton de Crear</returns>
         private bool CreateCommand_CanExecute()
         {
-            bool res = true;
-            if (nombre == null || apellidos == null || direccion == null || foto == null || telefono == null)
-            {
-                res = false;
-            }
-            return res;
+            return !string.IsNullOrWhiteSpace(this.Nombre) &&
+               !string.IsNullOrWhiteSpace(this.Apellidos) &&
+               !string.IsNullOrWhiteSpace(this.Direccion) &&
+               !string.IsNullOrWhiteSpace(this.Foto) &&
+               !string.IsNullOrWhiteSpace(this.Telefono);
         }
         #endregion
 

@@ -16,11 +16,12 @@ namespace CRUDMAUIV3.Models.ViewModels
     {
 
         #region atributos
-        private List<ClsPersona> personas;
         private List<PersonaListaDepartamentos> listadoPersonas;
         private PersonaListaDepartamentos personaSeleccionada;
         private DelegateCommand detallesCommand;
         private DelegateCommand aniadirCommand;
+        private DelegateCommand editCommand;
+        private DelegateCommand deleteCommand;
         #endregion
 
         #region propiedades
@@ -37,6 +38,8 @@ namespace CRUDMAUIV3.Models.ViewModels
                 personaSeleccionada = value;
                 NotifyPropertyChanged("PersonaSeleccionada");
                 detallesCommand.RaiseCanExecuteChanged();
+                editCommand.RaiseCanExecuteChanged();
+                deleteCommand.RaiseCanExecuteChanged();
             }
         }
         public DelegateCommand DetallesCommand
@@ -54,13 +57,31 @@ namespace CRUDMAUIV3.Models.ViewModels
                 return aniadirCommand;
             }
         }
+
+        public DelegateCommand EditCommand
+        {
+            get
+            {
+                return editCommand;
+            }
+        }
+
+        public DelegateCommand DeleteCommand
+        {
+            get
+            {
+                return deleteCommand;
+            }
+        }
         #endregion
 
         #region constructores
         public PersonaDepartamentoVM()
         {
-            detallesCommand = new DelegateCommand(DetallesCommand_Executed, DetallesCommand_CanExecute);
+            detallesCommand = new DelegateCommand(DetallesCommand_Executed, BotonesPer_CanExecute);
             aniadirCommand = new DelegateCommand(AniadirCommand_Executed);
+            editCommand = new DelegateCommand(EditCommand_Executed, BotonesPer_CanExecute);
+            deleteCommand = new DelegateCommand(DeleteCommand_Executed, BotonesPer_CanExecute);
             Refrescar();
         }
         #endregion
@@ -92,12 +113,40 @@ namespace CRUDMAUIV3.Models.ViewModels
         }
 
         /// <summary>
-        /// Metodo que comprueba si el boton de Detalles puede estar activado o no
+        /// Metodo que usa a la persona seleccionada como parametro y navega hacia la pagina de editado
+        /// </summary>
+        /// <pre>La persona seleccionada debe ser valida</pre>
+        /// <post>Nada</post>
+        private async void EditCommand_Executed()
+        {
+            var navigationParameter = new ShellNavigationQueryParameters
+            {
+                { "PersonaSeleccionada", personaSeleccionada }
+            };
+            await Shell.Current.GoToAsync("//Edit", navigationParameter);
+        }
+
+        /// <summary>
+        /// Metodo que usa a la persona seleccionada como parametro y navega hacia la pagina de borrado
+        /// </summary>
+        /// <pre>La persona seleccionada debe ser valida</pre>
+        /// <post>Nada</post>
+        private async void DeleteCommand_Executed()
+        {
+            var navigationParameter = new ShellNavigationQueryParameters
+            {
+                { "PersonaSeleccionada", personaSeleccionada }
+            };
+            await Shell.Current.GoToAsync("//Delete", navigationParameter);
+        }
+
+        /// <summary>
+        /// Metodo que comprueba si los botones de Detalles, Editar y Eliminar pueden estar activados o no
         /// </summary>
         /// <pre>Nada</pre>
         /// <post>El metodo siempre devolvera un booleano</post>
-        /// <returns>Variable booleana para activacion/desactivacion del boton de Detalles</returns>
-        private bool DetallesCommand_CanExecute()
+        /// <returns>Variable booleana para activacion/desactivacion de los botones de Detalles, Editar y Eliminar</returns>
+        private bool BotonesPer_CanExecute()
         {
             bool res = true;
             if (personaSeleccionada is null)
@@ -107,26 +156,12 @@ namespace CRUDMAUIV3.Models.ViewModels
             return res;
         }
 
-        /// <summary>
-        /// Monta el listado de personas final para mostrarlo por pantalla
-        /// </summary>
-        /// <pre>Ninguna</pre>
-        /// <post>Ninguna</post>
-        private void montarListado()
-        {
-            PersonaListaDepartamentos itemNuevo;
-            foreach (ClsPersona per in personas)
-            {
-                itemNuevo = new PersonaListaDepartamentos(per);
-                listadoPersonas.Add(itemNuevo);
-            }
-        }
-
         public void Refrescar()
         {
             try
             {
-                personas = ClsListadoBL.ObtenerPersonasBL();
+                List<ClsDepartamento> departamentos = ClsListadoBL.ObtenerDepartamentosBL();
+                List<ClsPersona> personas = ClsListadoBL.ObtenerPersonasBL();
                 if (listadoPersonas.IsNullOrEmpty())
                 {
                     listadoPersonas = new List<PersonaListaDepartamentos>();
@@ -134,7 +169,10 @@ namespace CRUDMAUIV3.Models.ViewModels
                 {
                     listadoPersonas.Clear();
                 }
-                montarListado();
+                foreach (ClsPersona per in personas)
+                {
+                    listadoPersonas.Add(new PersonaListaDepartamentos(per));
+                }
             }
             catch (Exception ex)
             {

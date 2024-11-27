@@ -2,41 +2,45 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vmodel="clr-namespace:CRUDMAUIV3.Models.ViewModels"
-             x:Class="CRUDMAUIV3.Views.Create"
-             Title="Creacion de una persona">
+             x:Class="CRUDMAUIV3.Views.Edit"
+             Title="Editar persona">
     <ContentPage.BindingContext>
-        <vmodel:CreateVM></vmodel:CreateVM>
+        <vmodel:EditVM></vmodel:EditVM>
     </ContentPage.BindingContext>
     <VerticalStackLayout>
         <HorizontalStackLayout>
+            <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="ID: "/>
+            <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.Id}"/>
+        </HorizontalStackLayout>
+        <HorizontalStackLayout>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Nombre: "/>
-            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Nombre}"/>
+            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.Nombre}"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Apellidos: "/>
-            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Apellidos}"/>
+            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.Apellidos}"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Direccion: "/>
-            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Direccion}"/>
+            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.Direccion}"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Enlace a foto: "/>
-            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Foto}"/>
+            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.Foto}"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Fecha de nacimiento: "/>
-            <DatePicker MaximumDate="{Binding FechaActual}" Date="{Binding FechaNacimiento}"/>
+            <DatePicker MaximumDate="{Binding FechaActual}" Date="{Binding PersonaSeleccionada.FechaNacimiento}"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="Telefono: "/>
-            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding Telefono}"/>
+            <Entry FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="{Binding PersonaSeleccionada.Telefono}"/>
         </HorizontalStackLayout>
         <HorizontalStackLayout>
             <Label FontSize="16" VerticalTextAlignment="Center" Margin="12" Text="ID de departamento: "/>
             <Picker ItemsSource="{Binding Departamentos}" ItemDisplayBinding="{Binding Nombre}" SelectedItem="{Binding DepSeleccionado}" />
         </HorizontalStackLayout>
         <Button Text="Volver" Command="{Binding VolverCommand}"/>
-        <Button Text="Crear" Command="{Binding CreateCommand}"/>
+        <Button Text="Editar" Command="{Binding EditCommand}"/>
     </VerticalStackLayout>
 </ContentPage>

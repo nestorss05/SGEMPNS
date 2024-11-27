@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vmodel="clr-namespace:CRUDMAUIV3.Models.ViewModels"
+             x:Class="CRUDMAUIV3.Views.Delete"
+             Title="Borrar persona">
+    <ContentPage.BindingContext>
+        <vmodel:DeleteVM></vmodel:DeleteVM>
+    </ContentPage.BindingContext>
+    <VerticalStackLayout>
+        <Label Text="{Binding PersonaSeleccionada.Id}"/>
+        <Label Text="{Binding PersonaSeleccionada.Nombre}"/>
+        <Label Text="¿Estas seguro?" FontSize="24"/>
+        <Button Text="Si" Command="{Binding DeleteCommand}"/>
+        <Button Text="No" Command="{Binding VolverCommand}"/>
+    </VerticalStackLayout>
+</ContentPage>

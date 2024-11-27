@@ -31,8 +31,8 @@
         </ScrollView>
         <HorizontalStackLayout Grid.Row="2">
             <Button Text="Detalles" Command="{Binding DetallesCommand}"/>
-            <Button Text="Editar (TODO)"/>
-            <Button Text="Borrar (TODO)"/>
+            <Button Text="Editar" Command="{Binding EditCommand}"/>
+            <Button Text="Borrar" Command="{Binding DeleteCommand}"/>
         </HorizontalStackLayout>
     </Grid>
 </ContentPage>

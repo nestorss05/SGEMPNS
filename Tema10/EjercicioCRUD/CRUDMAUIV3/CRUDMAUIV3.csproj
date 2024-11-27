@@ -71,7 +71,13 @@
 	  <MauiXaml Update="Views\Create.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Delete.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Details.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\Edit.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
