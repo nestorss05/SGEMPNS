@@ -1,4 +1,5 @@
-﻿using Ejercicio1.ViewModels.Utilidades;
+﻿using CRUDMAUIV3.Views;
+using Ejercicio1.ViewModels.Utilidades;
 using EjercicioCRUD_BL;
 using EjercicioCRUD_ENT;
 using System;
@@ -11,7 +12,6 @@ using System.Threading.Tasks;
 
 namespace CRUDMAUIV3.Models.ViewModels
 {
-    [QueryProperty(nameof(PersonaSeleccionada), "PersonaSeleccionada")]
     public class EditVM : ClsPersona, INotifyPropertyChanged
     {
 
@@ -138,7 +138,7 @@ namespace CRUDMAUIV3.Models.ViewModels
         /// </summary>
         private async void VolverCommand_Executed()
         {
-            await Shell.Current.GoToAsync("//MainPage");
+            await App.Current.MainPage.Navigation.PopAsync();
         }
 
         /// <summary>
@@ -161,7 +161,7 @@ namespace CRUDMAUIV3.Models.ViewModels
             if (res == 1)
             {
                 await Application.Current.MainPage.DisplayAlert("Editado", "Persona editada satisfactoriamente", "Aceptar");
-                await Shell.Current.GoToAsync("//MainPage");
+                await App.Current.MainPage.Navigation.PushAsync(new MainPage());
             }
             else
             {

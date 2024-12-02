@@ -1,4 +1,5 @@
-﻿using Ejercicio1.ViewModels.Utilidades;
+﻿using CRUDMAUIV3.Views;
+using Ejercicio1.ViewModels.Utilidades;
 using EjercicioCRUD_BL;
 using System;
 using System.Collections.Generic;
@@ -10,7 +11,6 @@ using System.Threading.Tasks;
 
 namespace CRUDMAUIV3.Models.ViewModels
 {
-    [QueryProperty(nameof(PersonaSeleccionada), "PersonaSeleccionada")]
     public class DeleteVM : INotifyPropertyChanged
     {
         #region Atributos
@@ -64,7 +64,7 @@ namespace CRUDMAUIV3.Models.ViewModels
         /// </summary>
         private async void VolverCommand_Executed()
         {
-            await Shell.Current.GoToAsync("//MainPage");
+            await App.Current.MainPage.Navigation.PopAsync();
         }
 
         private async void DeleteCommand_Executed()
@@ -73,7 +73,7 @@ namespace CRUDMAUIV3.Models.ViewModels
             if (res == 1)
             {
                 await Application.Current.MainPage.DisplayAlert("Borrado", "Persona borrada satisfactoriamente", "Aceptar");
-                await Shell.Current.GoToAsync("//MainPage");
+                await App.Current.MainPage.Navigation.PushAsync(new MainPage());
             }
             else
             {

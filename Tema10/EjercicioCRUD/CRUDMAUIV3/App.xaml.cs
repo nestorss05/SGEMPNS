@@ -1,4 +1,6 @@
-﻿namespace CRUDMAUIV3
+﻿using CRUDMAUIV3.Views;
+
+namespace CRUDMAUIV3
 {
     public partial class App : Application
     {
@@ -6,7 +8,7 @@
         {
             InitializeComponent();
 
-            MainPage = new AppShell();
+            MainPage = new NavigationPage(new BarraNav());
         }
     }
 }

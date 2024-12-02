@@ -1,4 +1,5 @@
-﻿using Ejercicio1.ViewModels.Utilidades;
+﻿using CRUDMAUIV3.Views;
+using Ejercicio1.ViewModels.Utilidades;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -9,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace CRUDMAUIV3.Models.ViewModels
 {
-    [QueryProperty(nameof(PersonaSeleccionada), "PersonaSeleccionada")]
     public class DetailsVM: INotifyPropertyChanged
     {
 
@@ -74,7 +74,7 @@ namespace CRUDMAUIV3.Models.ViewModels
         /// </summary>
         private async void VolverCommand_Executed()
         {
-            await Shell.Current.GoToAsync("//MainPage");
+            await App.Current.MainPage.Navigation.PopAsync();
         }
         /// <summary>
         /// Metodo que usa a la persona seleccionada como parametro y navega hacia la pagina de editado
@@ -83,11 +83,7 @@ namespace CRUDMAUIV3.Models.ViewModels
         /// <post>Nada</post>
         private async void EditCommand_Executed()
         {
-            var navigationParameter = new ShellNavigationQueryParameters
-            {
-                { "PersonaSeleccionada", personaSeleccionada }
-            };
-            await Shell.Current.GoToAsync("//Edit", navigationParameter);
+            await App.Current.MainPage.Navigation.PushAsync(new Edit(personaSeleccionada));
         }
 
         /// <summary>
@@ -97,11 +93,7 @@ namespace CRUDMAUIV3.Models.ViewModels
         /// <post>Nada</post>
         private async void DeleteCommand_Executed()
         {
-            var navigationParameter = new ShellNavigationQueryParameters
-            {
-                { "PersonaSeleccionada", personaSeleccionada }
-            };
-            await Shell.Current.GoToAsync("//Delete", navigationParameter);
+            await App.Current.MainPage.Navigation.PushAsync(new Delete(personaSeleccionada));
         }
         #endregion
 

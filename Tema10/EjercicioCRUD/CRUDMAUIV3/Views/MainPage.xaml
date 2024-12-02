@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:vmodel="clr-namespace:CRUDMAUIV3.Models.ViewModels"
              x:Class="CRUDMAUIV3.Views.MainPage"
-             Title="">
+             Title="Personas">
     <ContentPage.BindingContext>
         <vmodel:PersonaDepartamentoVM></vmodel:PersonaDepartamentoVM>
     </ContentPage.BindingContext>

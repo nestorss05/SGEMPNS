@@ -1,4 +1,5 @@
-﻿using Ejercicio1.ViewModels.Utilidades;
+﻿using CRUDMAUIV3.Views;
+using Ejercicio1.ViewModels.Utilidades;
 using EjercicioCRUD_BL;
 using EjercicioCRUD_ENT;
 using Microsoft.IdentityModel.Tokens;
@@ -100,11 +101,7 @@ namespace CRUDMAUIV3.Models.ViewModels
         /// <post>Nada</post>
         private async void DetallesCommand_Executed()
         {
-            var navigationParameter = new ShellNavigationQueryParameters
-            {
-                { "PersonaSeleccionada", personaSeleccionada }
-            };
-            await Shell.Current.GoToAsync("//Details", navigationParameter);
+            await App.Current.MainPage.Navigation.PushAsync(new Details(personaSeleccionada));
         }
 
         /// <summary>
@@ -114,7 +111,7 @@ namespace CRUDMAUIV3.Models.ViewModels
         /// <post>Nada</post>
         private async void AniadirCommand_Executed()
         {
-            await Shell.Current.GoToAsync("//Create");
+            await App.Current.MainPage.Navigation.PushAsync(new Create());
         }
 
         /// <summary>
@@ -124,11 +121,7 @@ namespace CRUDMAUIV3.Models.ViewModels
         /// <post>Nada</post>
         private async void EditCommand_Executed()
         {
-            var navigationParameter = new ShellNavigationQueryParameters
-            {
-                { "PersonaSeleccionada", personaSeleccionada }
-            };
-            await Shell.Current.GoToAsync("//Edit", navigationParameter);
+            await App.Current.MainPage.Navigation.PushAsync(new Edit(personaSeleccionada));
         }
 
         /// <summary>
@@ -138,11 +131,7 @@ namespace CRUDMAUIV3.Models.ViewModels
         /// <post>Nada</post>
         private async void DeleteCommand_Executed()
         {
-            var navigationParameter = new ShellNavigationQueryParameters
-            {
-                { "PersonaSeleccionada", personaSeleccionada }
-            };
-            await Shell.Current.GoToAsync("//Delete", navigationParameter);
+            await App.Current.MainPage.Navigation.PushAsync(new Delete(personaSeleccionada));
         }
 
         /// <summary>

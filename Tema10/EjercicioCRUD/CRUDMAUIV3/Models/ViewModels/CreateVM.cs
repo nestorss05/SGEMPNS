@@ -1,4 +1,5 @@
-﻿using Ejercicio1.ViewModels.Utilidades;
+﻿using CRUDMAUIV3.Views;
+using Ejercicio1.ViewModels.Utilidades;
 using EjercicioCRUD_BL;
 using EjercicioCRUD_ENT;
 using System;
@@ -14,8 +15,8 @@ namespace CRUDMAUIV3.Models.ViewModels
     public class CreateVM : ClsPersona, INotifyPropertyChanged
     {
         #region Atributos
-        private DelegateCommand volverCommand;
         private DelegateCommand createCommand;
+        private DelegateCommand volverCommand;
         private ClsDepartamento depSeleccionado;
         private List<ClsDepartamento> departamentos;
         #endregion
@@ -66,14 +67,17 @@ namespace CRUDMAUIV3.Models.ViewModels
             set { depSeleccionado = value; NotifyPropertyChanged("DepSeleccionado"); }
         }
 
-        public DelegateCommand VolverCommand
-        {
-            get { return volverCommand; }
-        }
-
         public DelegateCommand CreateCommand
         {
             get { return createCommand; }
+        }
+
+        public DelegateCommand VolverCommand
+        {
+            get
+            {
+                return volverCommand;
+            }
         }
         #endregion
 
@@ -103,7 +107,7 @@ namespace CRUDMAUIV3.Models.ViewModels
         /// </summary>
         private async void VolverCommand_Executed()
         {
-            await Shell.Current.GoToAsync("//MainPage");
+            await App.Current.MainPage.Navigation.PopAsync();
         }
 
         /// <summary>
@@ -118,7 +122,7 @@ namespace CRUDMAUIV3.Models.ViewModels
             if (res == 1)
             {
                 await Application.Current.MainPage.DisplayAlert("Añadido", "Persona insertada", "Aceptar");
-                await Shell.Current.GoToAsync("//MainPage");
+                await App.Current.MainPage.Navigation.PushAsync(new MainPage());
             } else
             {
                 await Application.Current.MainPage.DisplayAlert("Añadido", "ERROR: Persona no insertada", "Aceptar");
