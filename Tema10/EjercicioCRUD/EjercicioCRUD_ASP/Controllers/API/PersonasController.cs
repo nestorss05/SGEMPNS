@@ -1,6 +1,7 @@
 ﻿using EjercicioCRUD_BL;
 using EjercicioCRUD_ENT;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.ConstrainedExecution;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -12,37 +13,131 @@ namespace EjercicioCRUD_ASP.Controllers.API
     {
         // GET: api/<PersonasController>
         [HttpGet]
-        public List<ClsPersona> Get()
+        public IActionResult Get()
         {
-            return ClsListadoBL.ObtenerPersonasBL();
+            IActionResult salida;
+            List<ClsPersona> listadoCompleto = new List<ClsPersona>();
+            try
+            {
+                listadoCompleto = ClsListadoBL.ObtenerPersonasBL();
+                if (listadoCompleto.Count == 0)
+                {
+                    salida = NoContent();
+                }
+                else
+                {
+                    {
+                        salida = Ok(listadoCompleto);
+                    }
+                }
+            } catch
+            {
+                salida = BadRequest();
+            }
+            return salida;
         }
 
         // GET api/<PersonasController>/5
         [HttpGet("{id}")]
-        public ClsPersona Get(int id)
+        public IActionResult Get(int id)
         {
-            return ClsManejoPersonaBL.BuscarPersonaBL(id);
+            IActionResult salida;
+            ClsPersona? persona = new ClsPersona();
+            try
+            {
+                persona = ClsManejoPersonaBL.BuscarPersonaBL(id);
+                if (persona != null)
+                {
+                    {
+                        salida = Ok(persona);
+                    }
+                }
+                else
+                {
+                    salida = NoContent();
+                }
+            }
+            catch
+            {
+                salida = BadRequest();
+            }
+            return salida;
         }
 
         // POST api/<PersonasController>
         [HttpPost]
-        public void Post([FromBody] ClsPersona per)
+        public IActionResult Post([FromBody] ClsPersona per)
         {
-            ClsManejoPersonaBL.CrearPersonaBL(per);
+            int guardadoCorrectamente = 0;
+            IActionResult salida;
+            if (per != null)
+            {
+                try
+                {
+                    guardadoCorrectamente = ClsManejoPersonaBL.CrearPersonaBL(per);
+                    salida = Ok(guardadoCorrectamente);
+                }
+                catch
+                {
+                    salida = BadRequest();
+                }
+            }
+            else
+            {
+                salida = NoContent();
+            }
+            return salida;
         }
 
         // PUT api/<PersonasController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] ClsPersona per)
+        public IActionResult Put(int id, [FromBody] ClsPersona per)
         {
-            ClsManejoPersonaBL.EditarPersonaBL(per);
+            int guardadoCorrectamente = 0;
+            IActionResult salida;
+            if (per != null)
+            {
+                try
+                {
+                    guardadoCorrectamente = ClsManejoPersonaBL.EditarPersonaBL(per);
+                    salida = Ok(guardadoCorrectamente);
+                }
+                catch
+                {
+                    salida = BadRequest();
+                }
+            }
+            else
+            {
+                salida = NoContent();
+            }
+            return salida;
         }
 
         // DELETE api/<PersonasController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(int id)
         {
-            ClsManejoPersonaBL.BorrarPersonaBL(id);
+            int guardadoCorrectamente = 0;
+            IActionResult salida;
+            ClsPersona? per = ClsManejoPersonaBL.BuscarPersonaBL(id);
+            if (per != null)
+            {
+                try
+                {
+                    guardadoCorrectamente = ClsManejoPersonaBL.BorrarPersonaBL(id);
+                    salida = Ok(guardadoCorrectamente);
+                }
+                catch
+                {
+                    salida = BadRequest();
+                }
+            }
+            else
+            {
+                salida = NoContent();
+            }
+            return salida;
         }
     }
 }
