@@ -5,16 +5,20 @@ xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+        <link rel="stylesheet" href="styles.css"/>
         <title>PokeAPI</title>
     </head>
     <body>
-        <p>
-            <form>
-                <input type="button" id="btn" value="pulsa aquí" onclick="pedirDatos();" />
-            </form>
-        </p>
-        <p id="pokemon">
+        <form id="datos">
+            <input type="button" id="btn" value="Pulsa" onclick="pedirDatos();" />
+        </form>
+        <div id="container">
+            <p id="pokemon">
 
-        </p>
+            </p>
+            <p id="detalles">
+    
+            </p>
+        </div>
     </body>
 </html>
