@@ -1,4 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using PruebaDAL;
+using PruebaDTO;
+using System.Runtime.ConstrainedExecution;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -10,34 +13,141 @@ namespace Prueba.Controllers.API
     {
         // GET: api/<PersonasController>
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IActionResult Get()
         {
-            return new string[] { "value1", "value2" };
+            IActionResult salida;
+            List<ClsPersona> listadoCompleto = new List<ClsPersona>();
+            try
+            {
+                listadoCompleto = ClsListadoDAL.ObtenerTodo();
+                if (listadoCompleto.Count == 0)
+                {
+                    salida = NoContent();
+                }
+                else
+                {
+                    {
+                        salida = Ok(listadoCompleto);
+                    }
+                }
+            }
+            catch
+            {
+                salida = BadRequest();
+            }
+            return salida;
         }
 
         // GET api/<PersonasController>/5
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(String id)
         {
-            return "value";
+            IActionResult salida;
+            ClsPersona? persona = new ClsPersona();
+            try
+            {
+                persona = ClsListadoDAL.BuscarPorID(id);
+                if (persona != null)
+                {
+                    {
+                        salida = Ok(persona);
+                    }
+                }
+                else
+                {
+                    salida = NoContent();
+                }
+            }
+            catch
+            {
+                salida = BadRequest();
+            }
+            return salida;
         }
 
         // POST api/<PersonasController>
         [HttpPost]
-        public void Post([FromBody] string value)
+        public IActionResult Post([FromBody] ClsPersona per)
         {
+            IActionResult salida;
+            if (per != null)
+            {
+                try
+                {
+                    ClsListadoDAL.AgregarPersonaDAL(per);
+                    salida = Ok(per);
+                }
+                catch
+                {
+                    salida = BadRequest();
+                }
+            }
+            else
+            {
+                salida = NoContent();
+            }
+            return salida;
         }
 
         // PUT api/<PersonasController>/5
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        public IActionResult Put(int id, [FromBody] ClsPersona per)
         {
+            int guardadoCorrectamente = 0;
+            bool res = false;
+            IActionResult salida;
+            if (per != null)
+            {
+                try
+                {
+                    res = ClsListadoDAL.ModificarPersonaDAL(per);
+                    if (res)
+                    {
+                        guardadoCorrectamente = 1;
+                    }
+                    salida = Ok(guardadoCorrectamente);
+                }
+                catch
+                {
+                    salida = BadRequest();
+                }
+            }
+            else
+            {
+                salida = NoContent();
+            }
+            return salida;
         }
 
         // DELETE api/<PersonasController>/5
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public IActionResult Delete(String id)
         {
+            int guardadoCorrectamente = 0;
+            bool res = false;
+            IActionResult salida;
+            ClsPersona? per = ClsListadoDAL.BuscarPorID(id);
+            if (per != null)
+            {
+                try
+                {
+                    res = ClsListadoDAL.EliminarPersonaDAL(id);
+                    if (res)
+                    {
+                        guardadoCorrectamente = 1;
+                    }
+                    salida = Ok(guardadoCorrectamente);
+                }
+                catch
+                {
+                    salida = BadRequest();
+                }
+            }
+            else
+            {
+                salida = NoContent();
+            }
+            return salida;
         }
     }
 }
