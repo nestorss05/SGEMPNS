@@ -12,11 +12,70 @@ html {
   box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
 }
 
+#container {
+    display: flex;
+    flex-direction: row; /* Organiza en filas */
+    justify-content: space-between; /* Añade espacio entre las columnas */
+    gap: 20px; /* Espaciado entre columnas */
+    margin-top: 20px; /* Separación respecto al botón */
+}
+
+#pokemon, #detalles {
+    flex: 1; /* Cada columna ocupa el mismo espacio */
+    padding: 10px;
+    border: 1px solid #ccc; /* Bordes opcionales para distinguir las columnas */
+    border-radius: 5px; /* Bordes redondeados */
+    background-color: #f8f9fa; /* Color de fondo claro */
+}
+
+    #pokemon ul {
+        list-style-type: none; /* Eliminar los puntos por defecto de la lista */
+        padding-left: 0; /* Elimina el padding izquierdo */
+    }
+
+    #pokemon li {
+        padding: 10px;
+        margin-bottom: 8px; /* Espaciado entre elementos */
+        border-radius: 5px;
+        background-color: #d8d8d8; /* Fondo claro para los elementos */
+        font-size: 16px;
+        font-weight: bold;
+        color: #4b4b4b;
+        transition: background-color 0.3s, transform 0.2s;
+    }
+
+        #pokemon li:hover {
+            background-color: #c5c5c5; /* Fondo más oscuro al pasar el mouse */
+            cursor: pointer;
+            transform: scale(1.05); /* Efecto de agrandamiento al pasar el mouse */
+        }
+
+#pokemon {
+    margin-right: 10px;
+    border: 1px solid #000000; /* Borde sutil */
+    padding: 10px 20px;
+}
+
+#detalles {
+    margin-left: 10px;
+    border: 1px solid #000000; /* Borde sutil */
+}
+
+.pokemon-item {
+    padding: 10px;
+    display: block;
+    width: 100%; /* Asegura que el div ocupe todo el área del li */
+    cursor: pointer;
+}
+
 html {
   position: relative;
   min-height: 100%;
 }
 
 body {
-  margin-bottom: 60px;
+    font-family: Arial, sans-serif;
+    margin: 20px;
+    background-color: #f8f9fa;
+    color: #333;
 }
