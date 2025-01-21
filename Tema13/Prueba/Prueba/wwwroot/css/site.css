@@ -28,27 +28,27 @@ html {
     background-color: #f8f9fa; /* Color de fondo claro */
 }
 
-    #pokemon ul {
-        list-style-type: none; /* Eliminar los puntos por defecto de la lista */
-        padding-left: 0; /* Elimina el padding izquierdo */
-    }
+#pokemon ul {
+    list-style-type: none; /* Eliminar los puntos por defecto de la lista */
+    padding-left: 0; /* Elimina el padding izquierdo */
+}
 
-    #pokemon li {
-        padding: 10px;
-        margin-bottom: 8px; /* Espaciado entre elementos */
-        border-radius: 5px;
-        background-color: #d8d8d8; /* Fondo claro para los elementos */
-        font-size: 16px;
-        font-weight: bold;
-        color: #4b4b4b;
-        transition: background-color 0.3s, transform 0.2s;
-    }
+#pokemon li {
+    padding: 10px;
+    margin-bottom: 8px; /* Espaciado entre elementos */
+    border-radius: 5px;
+    background-color: #d8d8d8; /* Fondo claro para los elementos */
+    font-size: 16px;
+    font-weight: bold;
+    color: #4b4b4b;
+    transition: background-color 0.3s, transform 0.2s;
+}
 
-        #pokemon li:hover {
-            background-color: #c5c5c5; /* Fondo más oscuro al pasar el mouse */
-            cursor: pointer;
-            transform: scale(1.05); /* Efecto de agrandamiento al pasar el mouse */
-        }
+#pokemon li:hover {
+    background-color: #c5c5c5; /* Fondo más oscuro al pasar el mouse */
+    cursor: pointer;
+    transform: scale(1.05); /* Efecto de agrandamiento al pasar el mouse */
+}
 
 #pokemon {
     margin-right: 10px;
@@ -78,4 +78,68 @@ body {
     margin: 20px;
     background-color: #f8f9fa;
     color: #333;
+}
+
+#creator {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 20px auto;
+    padding: 20px;
+    max-width: 500px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+#creator h1 {
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+    color: #258cfb;
+    text-align: center;
+}
+
+#registro-form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    width: 100%;
+}
+
+#registro-form label {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #555;
+}
+
+#registro-form input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    transition: border-color 0.3s;
+}
+
+#registro-form input:focus {
+    border-color: #258cfb;
+    outline: none;
+    box-shadow: 0 0 5px rgba(37, 140, 251, 0.5);
+}
+
+#registro-form button {
+    padding: 10px 20px;
+    font-size: 1rem;
+    font-weight: bold;
+    color: #ffffff;
+    background-color: #258cfb;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+#registro-form button:hover {
+background-color: #206dcf;
+transform: scale(1.02);
 }
