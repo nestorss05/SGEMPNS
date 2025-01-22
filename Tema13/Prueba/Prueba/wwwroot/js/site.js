@@ -1,4 +1,11 @@
 ﻿/**
+ * Metodo que carga los datos de las personas de forma automatica
+ */
+document.addEventListener('DOMContentLoaded', function () {
+    pedirDatos()
+});
+
+/**
  * Metodo que llama a la API para obtener el listado de pokemons
  * Pre: ninguna
  * Post: ninguna
@@ -28,9 +35,6 @@ function pedirDatos() {
  * @param {*} arrayPersonas 
  */
 function listarPersonas(arrayPersonas) {
-    var datos = document.getElementById("datos");
-    datos.innerHTML = "";
-
     var info = document.getElementById("info");
     var html = "<h1>Listado de personas</h1>";
     html += "Para eliminar una persona, haga clic en ella. Para agregar una persona, navega hacia abajo del todo en la pagina.";
