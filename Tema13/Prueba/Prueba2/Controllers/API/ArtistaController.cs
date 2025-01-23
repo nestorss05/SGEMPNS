@@ -130,12 +130,21 @@ namespace Prueba2.Controllers.API
             {
                 try
                 {
-                    res = ClsListadoArtistasDAL.EliminarArtistaDAL(id);
-                    if (res)
+                    List<ClsCancion> canciones = Prueba2DAL.ClsListadoCancionesDAL.todoCanciones();
+                    bool tieneCanciones = canciones.Any(c => c.IdArtista == id);
+                    if (tieneCanciones)
                     {
-                        guardadoCorrectamente = 1;
+                        return BadRequest("No se puede eliminar el artista porque tiene canciones asociadas.");
+                    } 
+                    else
+                    {
+                        res = ClsListadoArtistasDAL.EliminarArtistaDAL(id);
+                        if (res)
+                        {
+                            guardadoCorrectamente = 1;
+                        }
+                        salida = Ok(guardadoCorrectamente);
                     }
-                    salida = Ok(guardadoCorrectamente);
                 }
                 catch
                 {

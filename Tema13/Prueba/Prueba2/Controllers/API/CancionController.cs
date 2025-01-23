@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Prueba2.Models;
 using Prueba2DAL;
 using Prueba2DTOv4;
 
@@ -26,7 +27,13 @@ namespace Prueba2.Controllers.API
                 else
                 {
                     {
-                        salida = Ok(listadoCompleto);
+                        List<ClsCancionConArtista> listadoFinal = new List<ClsCancionConArtista>();
+                        foreach (ClsCancion can in listadoCompleto)
+                        {
+                            ClsCancionConArtista canart = new ClsCancionConArtista(can);
+                            listadoFinal.Add(canart);
+                        }
+                        salida = Ok(listadoFinal);
                     }
                 }
             }

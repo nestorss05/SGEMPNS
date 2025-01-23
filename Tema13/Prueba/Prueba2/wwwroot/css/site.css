@@ -1,22 +1,132 @@
-html {
-  font-size: 14px;
-}
-
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
-}
-
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
-
+/* Generales */
 body {
-  margin-bottom: 60px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f0f0f0;
+    color: #333;
+    margin: 0;
+    padding: 0;
+}
+
+/* Cabecera y títulos */
+h1, h2 {
+    color: #333;
+    text-align: center;
+    font-size: 2rem;
+    margin: 20px 0;
+}
+
+/* Títulos de secciones */
+h1 {
+    font-size: 2.5rem;
+    color: #4CAF50;
+}
+
+/* Contenido principal */
+#recargaArtistas, #recargaCanciones {
+    text-align: center;
+    margin: 20px;
+}
+
+/* Listas de artistas y canciones */
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    text-align: left;
+}
+
+li {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    padding: 15px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+    li div {
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+
+        li div:hover {
+            background-color: #f0f0f0;
+        }
+
+/* Formularios */
+form {
+    background-color: #fff;
+    padding: 20px;
+    margin-top: 30px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 5px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+input, select, button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+    input[type="date"], input[type="time"], input[type="number"] {
+        max-width: 200px;
+    }
+
+button {
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    font-size: 1.1rem;
+}
+
+    button:hover {
+        background-color: #45a049;
+    }
+
+/* Mensajes de alerta */
+.alert {
+    background-color: #f44336;
+    color: white;
+    padding: 15px;
+    margin-top: 20px;
+    text-align: center;
+    border-radius: 5px;
+    font-size: 1.1rem;
+}
+
+/* Cargando */
+img[alt="Cargando"] {
+    display: block;
+    margin: 30px auto;
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    form {
+        padding: 15px;
+        margin-top: 20px;
+        max-width: 90%;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
 }

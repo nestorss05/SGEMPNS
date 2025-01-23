@@ -157,18 +157,29 @@ function listarCanciones(arrayCanciones) {
     for (let i = 0; i < arrayCanciones.length; i++) {
         html += `<li>
                 <div onclick="borrarCancion('${arrayCanciones[i].idCancion}')">
-                    ${arrayCanciones[i].idCancion}. ${arrayCanciones[i].nombre} (${arrayCanciones[i].genero}, ${arrayCanciones[i].año})
+                    ${arrayCanciones[i].idCancion}. ${arrayCanciones[i].nombreArtista} - ${arrayCanciones[i].nombre} (${arrayCanciones[i].genero}, ${arrayCanciones[i].año})
                 </div>
             </li>`;
     }
     html += "</ul>";
     personas.innerHTML = html;
 
+    var arrayNombres = []
+    arrayCanciones.forEach(function(art) {
+        if (!arrayNombres.some(fila => fila[1] === art.nombreArtista)) {
+            arrayNombres.push([art.idArtista, art.nombreArtista]);
+        }
+    });
+
+    arrayNombres.sort((a, b) => a[0] - b[0])
+
     var creator = document.getElementById("creatorCanciones");
+    var nombresArtistas = arrayNombres.map(fila => `<option value="${fila[0]}">${fila[1]}</option>`).join("");
+
     html = "<h2>Agregar / modificar cancion</h2>";
     html += "<form id=registro-form-cancion>";
-    html += "<label for='idArtista'>ID del Artista: </label>";
-    html += "<input type='number' id='idArtista' name='idArtista' required> <br>";
+    html += "<label for='idArtista'>Artista: </label>";
+    html += `<select id='idArtista' name='idArtista' required>${nombresArtistas}</select> <br>`;
     html += "<label for='nombreCan'>Nombre: </label>";
     html += "<input type='text' id='nombreCan' name='nombreCan' required> <br>";
     html += "<label for='duracion'>Duracion: </label>";
@@ -428,6 +439,3 @@ function borrarCancion(idCancion) {
 
     }
 }
-
-// TODO: vainas para que no se pueda eliminar un artista si existen canciones con su ID
-// TODO: vainas para poner el nombre del artista en vez de su ID tanto en el formulario como en la descripcion de cada cancion
