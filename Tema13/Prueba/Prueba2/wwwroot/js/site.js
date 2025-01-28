@@ -74,15 +74,31 @@ function listarArtistas(arrayArtistas) {
     infoArtistas.innerHTML = html;
 
     var artistas = document.getElementById("artistas");
-    html = "<ul>";
+    html = "<table border=1>";
+    html += `<tr>
+                <th> ID </th> 
+                <th> Nombre </th> 
+                <th> Apellidos </th>
+                <th> Nombre artistico </th>
+                <th> DNI </th>
+                <th> Fecha de nacimiento </th>
+                <th> Residencia </th>
+                <th> </th>
+            </tr>`;
     for (let i = 0; i < arrayArtistas.length; i++) {
-        html += `<li>
-                <div onclick="borrarArtista('${arrayArtistas[i].idArtista}')">
-                    ${arrayArtistas[i].idArtista}. ${arrayArtistas[i].nombre} ${arrayArtistas[i].apellidos} (${arrayArtistas[i].nombreArtistico}, ${arrayArtistas[i].residencia})
+        html += `<tr> 
+                    <td> ${arrayArtistas[i].idArtista} </td> 
+                    <td> ${arrayArtistas[i].nombre} </td> 
+                    <td> ${arrayArtistas[i].apellidos} </td>
+                    <td> ${arrayArtistas[i].nombreArtistico} </td>
+                    <td> ${arrayArtistas[i].dni} </td>
+                    <td> ${arrayArtistas[i].fechaNac} </td>
+                    <td> ${arrayArtistas[i].residencia} </td>
+                    <td> <button onclick="borrarArtista('${arrayArtistas[i].idArtista}')"> Borrar </button> </td>
                 </div>
-            </li>`;
+            </tr>`;
     }
-    html += "</ul>";
+    html += "</table>";
     artistas.innerHTML = html;
 
     var creator = document.getElementById("creatorArtistas");
@@ -100,15 +116,32 @@ function listarArtistas(arrayArtistas) {
     html += "<input type='date' id='fechaNac' name='fechaNac' required> <br>";
     html += "<label for='residencia'>Residencia: </label>";
     html += "<input type='text' id='residencia' name='residencia' required> <br>";
-    html += "<button type='submit'>Accionar</button>";
+    html += "<button type='submit'>Agregar</button>";
+    html += "<button type='button' id='modif-artista'>Modificar</button>";
     html += "</form>";
     creator.innerHTML = html;
 
-    document.getElementById('registro-form-artista').addEventListener('submit', function (event) {
+    document.getElementById('creatorArtistas').addEventListener('submit', function (event) {
 
         event.preventDefault();
-        var modificar = confirm("¿Modificar o crear? Si desea modificar, haga clic en aceptar. De lo contrario, haga clic en cancelar.")
-        if (modificar) {
+        const artista = {
+            idArtista: arrayArtistas[arrayArtistas.length - 1].idArtista + 1,
+            nombre: document.getElementById('nombre').value,
+            apellidos: document.getElementById('apellidos').value,
+            nombreArtistico: document.getElementById('nombreArtistico').value,
+            dni: document.getElementById('dni').value,
+            fechaNac: document.getElementById('fechaNac').value,
+            residencia: document.getElementById('residencia').value,
+        };
+        crearArtista(artista);
+
+    });
+
+    document.getElementById('modif-artista').addEventListener('click', function () {
+
+        if (document.getElementById('nombre').value == "" || document.getElementById('apellidos').value == "" || document.getElementById('nombreArtistico').value == "" || document.getElementById('dni').value == "" || document.getElementById('fechaNac').value == "" || document.getElementById('residencia').value == "") {
+            alert("Esta VACIO SO BURRO")
+        } else {
             var idModificar = prompt("Inserte el ID del artista a modificar");
             idModificar = parseInt(idModificar);
             const artista = {
@@ -121,18 +154,6 @@ function listarArtistas(arrayArtistas) {
                 residencia: document.getElementById('residencia').value,
             };
             modificarArtista(artista);
-        } else {
-            const artista = {
-                idArtista: arrayArtistas[arrayArtistas.length - 1].idArtista + 1,
-                nombre: document.getElementById('nombre').value,
-                apellidos: document.getElementById('apellidos').value,
-                nombreArtistico: document.getElementById('nombreArtistico').value,
-                dni: document.getElementById('dni').value,
-                fechaNac: document.getElementById('fechaNac').value,
-                residencia: document.getElementById('residencia').value,
-            };
-
-            crearArtista(artista);
         }
 
     });
@@ -153,15 +174,28 @@ function listarCanciones(arrayCanciones) {
     infoCanciones.innerHTML = html;
 
     var personas = document.getElementById("canciones");
-    html = "<ul>";
+    html = "<table border=1>";
+    html += `<tr>
+                <th> ID </th> 
+                <th> Artista </th> 
+                <th> Nombre </th>
+                <th> Duracion </th>
+                <th> Genero </th>
+                <th> Año </th>
+                <th> </th>
+            </tr>`;
     for (let i = 0; i < arrayCanciones.length; i++) {
-        html += `<li>
-                <div onclick="borrarCancion('${arrayCanciones[i].idCancion}')">
-                    ${arrayCanciones[i].idCancion}. ${arrayCanciones[i].nombreArtista} - ${arrayCanciones[i].nombre} (${arrayCanciones[i].genero}, ${arrayCanciones[i].año})
-                </div>
-            </li>`;
+        html += `<tr>
+                <td> ${arrayCanciones[i].idCancion} </td> 
+                <td> ${arrayCanciones[i].nombreArtista} </td> 
+                <td> ${arrayCanciones[i].nombre} </td>
+                <td> ${arrayCanciones[i].duracion} </td>
+                <td> ${arrayCanciones[i].genero} </td>
+                <td> ${arrayCanciones[i].año} </td>
+                <td> <button onclick="borrarCancion('${arrayCanciones[i].idCancion}')"> Borrar </button> </td>
+            </tr>`;
     }
-    html += "</ul>";
+    html += "</table>";
     personas.innerHTML = html;
 
     var arrayNombres = []
@@ -188,15 +222,31 @@ function listarCanciones(arrayCanciones) {
     html += "<input type='text' id='genero' name='genero' required> <br>";
     html += "<label for='año'>Año: </label>";
     html += "<input type='number' id='año' name='año' required> <br>";
-    html += "<button type='submit'>Accionar</button>";
+    html += "<button type='submit'>Agregar</button>";
+    html += "<button type='button' id='modif-cancion'>Modificar</button>";
     html += "</form>";
     creator.innerHTML = html;
 
     document.getElementById('registro-form-cancion').addEventListener('submit', function (event) {
 
         event.preventDefault();
-        var modificar = confirm("¿Modificar o crear? Si desea modificar, haga clic en aceptar. De lo contrario, haga clic en cancelar. NOTA: Modificar sobreescribira TODOS los datos que hayan en el objeto.")
-        if (modificar) {
+        const cancion = {
+            idCancion: arrayCanciones[arrayCanciones.length - 1].idCancion + 1,
+            idArtista: document.getElementById('idArtista').value,
+            nombre: document.getElementById('nombreCan').value,
+            duracion: document.getElementById('duracion').value,
+            genero: document.getElementById('genero').value,
+            año: document.getElementById('año').value,
+        };
+        crearCancion(cancion);
+
+    });
+
+    document.getElementById('modif-cancion').addEventListener('click', function () {
+
+        if (document.getElementById('idArtista').value == "" || document.getElementById('nombreCan').value == "" || document.getElementById('duracion').value == "" || document.getElementById('genero').value == "" || document.getElementById('año').value == "" ) {
+            alert("Esta VACIO SO BURRO")
+        } else {
             var idModificar = prompt("Inserte el ID de la cancion a modificar");
             idModificar = parseInt(idModificar);
             const cancion = {
@@ -208,17 +258,6 @@ function listarCanciones(arrayCanciones) {
                 año: document.getElementById('año').value,
             };
             modificarCancion(cancion);
-        } else {
-            const cancion = {
-                idCancion: arrayCanciones[arrayCanciones.length - 1].idCancion + 1,
-                idArtista: document.getElementById('idArtista').value,
-                nombre: document.getElementById('nombreCan').value,
-                duracion: document.getElementById('duracion').value,
-                genero: document.getElementById('genero').value,
-                año: document.getElementById('año').value,
-            };
-
-            crearCancion(cancion);
         }
 
     });
