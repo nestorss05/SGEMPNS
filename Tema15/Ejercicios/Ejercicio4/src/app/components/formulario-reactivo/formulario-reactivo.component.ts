@@ -17,8 +17,8 @@ export class FormularioReactivoComponent implements OnInit {
   constructor() {}
   ngOnInit(): void {
     this.formulario=new FormGroup({
-        nombre: new FormControl('',[Validators.required]),
-        apellidos: new FormControl('',[])
+        nombre: new FormControl('',[Validators.required, Validators.minLength(4)]),
+        apellidos: new FormControl('',[Validators.required])
     });
   }
 
