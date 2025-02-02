@@ -5,6 +5,6 @@ export interface Persona {
     telefono: String;
     direccion: String;
     foto: String;
-    fechaNac: Date;
+    fechaNacimiento: Date;
     idDep: Number;
 }

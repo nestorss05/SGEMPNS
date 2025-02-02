@@ -9,7 +9,7 @@ import { Persona } from '../interfaces/persona';
 export class PersonasService {
 
   /*URL de mi aPI para usar en todo el Servicio*/
-  urlWebAPI='nestorss.database.windows.net';
+  urlWebAPI='https://nestorsanchezasp.azurewebsites.net/API/Personas';
 
   constructor() { }
   http=inject(HttpClient);
