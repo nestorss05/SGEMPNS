@@ -18,4 +18,12 @@ export class PersonasService {
     return this.http.get<Persona[]>(this.urlWebAPI);
   }
 
+  postPersonas(per: Partial<Persona>): Observable<Persona>{
+    return this.http.post<Persona>(this.urlWebAPI, per);
+  }
+
+  deletePersonas(id: Number): Observable<void> {
+    return this.http.delete<void>(this.urlWebAPI + "/" + id);
+  }
+
 }
