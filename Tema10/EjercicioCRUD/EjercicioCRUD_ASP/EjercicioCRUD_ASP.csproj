@@ -7,6 +7,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="HubsV2\**" />
+    <Content Remove="HubsV2\**" />
+    <EmbeddedResource Remove="HubsV2\**" />
+    <None Remove="HubsV2\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="8.0.7" />
   </ItemGroup>
 
