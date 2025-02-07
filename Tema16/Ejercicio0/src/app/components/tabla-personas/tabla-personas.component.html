@@ -1,5 +1,8 @@
 <h1>Listado de Personas</h1>
-<button mat-raised-button color="primary" (click)="openDialog()">Añadir Persona</button>
+<button mat-raised-button color="primary" (click)="openDialog()">
+  <mat-icon aria-hidden="false" aria-label="Icono de añadido" fontIcon="add"></mat-icon>
+  Añadir Persona
+</button>
 
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
   
@@ -31,6 +34,7 @@
                 color="warn"
                 (click)="deletePersona(persona.id)"
                 >
+                <mat-icon aria-hidden="false" aria-label="Icono de añadido" fontIcon="delete"></mat-icon>
                 Borrar
             </button> 
         </td>

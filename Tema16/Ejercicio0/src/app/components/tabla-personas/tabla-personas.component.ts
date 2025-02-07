@@ -11,10 +11,11 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PersonaDialogComponent } from '../persona-dialog/persona-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIcon } from '@angular/material/icon'
 
 @Component({
   selector: 'app-tabla-personas',
-  imports: [CommonModule, MatButtonModule,  MatTableModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule],
+  imports: [CommonModule, MatButtonModule,  MatTableModule, MatPaginatorModule, MatFormFieldModule, MatInputModule, MatSelectModule, ReactiveFormsModule, MatIcon],
   templateUrl: './tabla-personas.component.html',
   styleUrl: './tabla-personas.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
