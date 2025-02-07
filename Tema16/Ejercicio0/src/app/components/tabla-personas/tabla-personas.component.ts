@@ -8,7 +8,9 @@ import { MatPaginator, MatPaginatorModule } from '@angular/material/paginator'
 import { MatSelectModule } from '@angular/material/select';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { FormControl, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { PersonaDialogComponent } from '../persona-dialog/persona-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-tabla-personas',
@@ -24,21 +26,11 @@ export class TablaPersonasComponent implements OnInit {
 
   columnas: string[] = ["id", "nombre", "apellidos", "fechaNac", "actions"];
   dataSource = new MatTableDataSource<Persona>([]);
-  personaForm: FormGroup;
 
-  constructor(private personaService: PersonasService) { }
+  constructor(private personaService: PersonasService, private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getPersonas();
-    this.personaForm=new FormGroup({
-      nombre: new FormControl('',[Validators.required]),
-      apellidos: new FormControl('',[Validators.required]),
-      telefono: new FormControl('',[Validators.required]),
-      direccion: new FormControl('',[Validators.required]),
-      foto: new FormControl('',[Validators.required]),
-      fechaNacimiento: new FormControl('',[Validators.required]),
-      idDepartamento: new FormControl('',[Validators.required]),
-    });
   }
 
   ngAfterViewInit(): void {
@@ -62,21 +54,28 @@ export class TablaPersonasComponent implements OnInit {
     });
   }
 
-  async crearPersona() {
-    if (this.personaForm.valid) {
-      var per: Persona = this.personaForm.value;
-      console.log(per)
-      this.personaService.postPersonas(per).subscribe({
-        next: (response) => {
-          alert("La persona ha sido añadida exitosamente");
-          this.getPersonas();
-          this.personaForm.reset();
-        },
-        error: (error)=>{
-          alert("Ha ocurrido un error al añadir la persona");
-        }
-      })
-    }
+  openDialog(): void {
+    const dialogRef = this.dialog.open(PersonaDialogComponent, {
+      width: '400px'
+    });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.crearPersona(result);
+      }
+    });
+  }
+
+  async crearPersona(personaData: Persona) {
+    this.personaService.postPersonas(personaData).subscribe({
+      next: (response) => {
+        alert("La persona ha sido añadida exitosamente");
+        this.getPersonas();
+      },
+      error: (error)=>{
+        alert("Ha ocurrido un error al añadir la persona");
+      }
+    })
   }
 
   async deletePersona(id?: Number) {
